@@ -5,10 +5,10 @@ class AdminModel extends CommonModel{
         array('pwd','require','密码必须！'),
         array('name','','用户名已经存在！',0,'unique',1),// 在新增的时候验证name字段是否唯一
         array('repwd','pwd','确认密码不正确',0,'confirm'),
-        array('pwd','checkPwdRules','密码格式不正确',0,'function'),
-        array('name','checkNameRules','用户名格式不正确',0,'function'),
-        array('name','checkName','帐号错误！',1,'function',4),  // 只在登录时候验证
-        array('pwd','checkPwd','密码错误！',1,'function',4), // 只在登录时候验证
+        array('pwd','/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{5,22}$/i','密码格式不正确',0,'regex'),
+        //array('name','/^[\u4e00-\u9fa5]+$/','用户名格式不正确',0,'regex'),
+        array('name','checkName','帐号错误！',1,'callback',4),  // 只在登录时候验证
+        array('pwd','checkPwd','密码错误！',1,'callback',4), // 只在登录时候验证
     );
     protected $_auto = array(
         array('password','',2,'ignore'),
@@ -16,6 +16,7 @@ class AdminModel extends CommonModel{
         array('password','md5',3,'function'),
         array('cre_time','Mdate()',1,'function'),
         array('up_time','Mdate()',2,'function'),
+        array('last_login','Mdate()',3,'function'),
     );
     protected $_scope = array(
         //
@@ -39,7 +40,7 @@ class AdminModel extends CommonModel{
      * @return boolean
      */
     private function checkPwdRules(){
-        $pwd = $this->_post('pwd','trim,htmlspecialchars');
+        $pwd = isset($_POST['pwd'])?$_POST['pwd']:'';
         if(preg_match('/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/i', $pwd)) {  
             return TRUE;
         }else{
@@ -51,36 +52,40 @@ class AdminModel extends CommonModel{
      * @return boolean
      */
     private function checkNameRules(){
-        $name = $this->_post('name','trim,htmlspecialchars');
-        if(preg_match('/^^[\u0391-\uFFE5]{2,5}$/i', $name)) {  
+        $name = trim($_POST['name']);
+        if(preg_match('/^[\u0391-\uFFE5]{2,5}$/i', $name)) {  
             return TRUE;
         }else{
             return FALSE;
         }
     }
     
-    private function checkName(){
-        $name = $this->_post('name','trim,htmlspecialchars');
-        $admin = M('admin');
-        if($admin->scope('normal')->where('name='.$name)->find()){
-            return TRUE;
+    protected function checkName(){
+        $name = trim($_POST['name']);
+        $result = $this->scope('normal')->where("name='".$name."'")->find();
+        if($result) {
+            return true;
         }else{
-            return FALSE;
+            return false;
         }
     }
     
-    private function checkPwd(){
-        $pwd = $this->_post('pwd','trim,htmlspecialchars');
-        $name = $this->_post('name','trim,htmlspecialchars');
-        $admin = M('admin');
-        if(!empty($name)){
-            if($admin->scope('normal')->where('pwd='.md5($pwd).' and name='.$name)->find()){
-                return TRUE;
-            }else{
-                return FALSE;
-            }
+    protected function checkPwd() {
+        $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+        $name = trim($_POST['name']);
+        $result = $this->scope('normal')->where("password='" . $this->pwdHash($pwd) . "' and name='" . $name . "'")->find();
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function pwdHash() {
+        if(isset($_POST['pwd'])) {
+            return md5($_POST['pwd']);
         }else{
-            return FALSE;
+            return false;
         }
     }
 }

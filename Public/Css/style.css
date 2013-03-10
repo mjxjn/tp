@@ -8,13 +8,15 @@ a{color:#3884D6;text-decoration:none;blr:expression(this.onFocus=this.blur());ou
 a:hover{text-decoration:underline}
 table{border-collapse:collapse}
 table,thead,tbody,tfoot,tr,td{margin:0px}
+.left{float: left;}
 .clear{clear:both;height:0px;line-height:0px;font-size:0px;overflow:hidden;visibility:hidden}
 html{min-width:1002px;-webkit-text-size-adjust:none;}
 h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
+.w350{width: 350px;}
 
 /*字体 颜色*/
 .f14{font-size: 14px;}
-
+.txt_fff{color: #fff;}
 .txt_ccc{color: #ccc;}         /*分割线*/
 .txt_E3E3E3{color:#E3E3E3;}   /*分割线*/
 .txt_3884D6{color: #3884D6;}  /*超链接*/
@@ -56,6 +58,7 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .system_menu ul li{line-height: 30px;}
 .system_menu ul li a{display: block;padding-left: 15px; color: #002b24;}
 .system_menu ul li a:hover{display: block; background: #c0cfcc; color: #002b24;text-decoration:none;}
+.system_menu ul li a.hover{display: block; background: #c0cfcc; color: #002b24;text-decoration:none;}
 .system_info{margin: 0 15px 10px 15px; padding-bottom: 7px;}
 .system_info h2{font-size: 14px; font-weight: bold; font-family: '微软雅黑'; line-height: 30px; padding-left: 15px; color: #3d95e4;}
 .system_info ul li{line-height: 23px; padding: 7px 0 7px 15px;}
@@ -72,7 +75,21 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .blkBreadcrumbNav a{color: #636363;}
 
 /*表格*/
+.table_top{margin: 20px 0 0;padding: 0; background: url('../images/tabletop_bg.gif') 0 0 repeat-x; clear: both; height: 30px; line-height: 30px;}
+.table_list{padding-left: 7px; }
+.table_action{font-weight: normal; }
+.table_action_ico{background: url('../images/all_ico.gif') 0 -58px no-repeat; display: inline-block; width: 15px; height: 15px; vertical-align: middle;}
+.table_menu{font-weight: bold;}
 .tablebox{border-width: 1px 1px 0 1px; border-style: solid; border-color: #ccc; margin-top: 15px; line-height: 35px;}
 .tablebox .bg{background: #f1f1f1;}
 .tablebox tr{border-bottom: 1px #ccc solid;}
 .tablebox td{padding-left: 10px;}
+
+/*下载上传*/
+.download_csv{margin-top: 10px;}
+.download_csv h2{font-weight: bold;}
+.info_bg{background: url(../images/all_ico.gif) 0px -176px no-repeat; display: inline-block;width: 170px;height: 31px; padding-left: 7px}
+.down_ico{background: url(../images/all_ico.gif) -17px -55px no-repeat; display: inline-block;width: 17px;height: 17px;}
+.download_btn{clear: both; background: url(../images/all_ico.gif) -33px 0px no-repeat; display: inline-block;width: 25px;height: 35px; margin: 10px 0 10px 90px;}
+.up_ico{background: url(../images/all_ico.gif) -34px -53px no-repeat; display: inline-block;width: 17px;height: 17px;}
+.upload_btn{clear: both; margin-left: 20px;background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center;margin-top: 25px; border: 0; cursor: pointer;}

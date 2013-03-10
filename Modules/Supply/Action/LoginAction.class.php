@@ -18,6 +18,7 @@ class LoginAction extends Action {
                 $admininfo = $admin->scope('normal')->where("name='" . $this->_post('name')."'")->field('id,name,department')->find();
                 $_SESSION[C('USER_AUTH_KEY')] = $admininfo['id'];
                 $_SESSION['loginUserName'] = $admininfo['name'];
+                $_SESSION['department'] = $admininfo['department'];
                 if ($admininfo['department'] == '管理员') {
                     $_SESSION['administrator'] = true;
                 }
@@ -40,7 +41,7 @@ class LoginAction extends Action {
     public function unlogin() {
         session(null);
         if (!session(C('USER_AUTH_KEY'))) {
-            $this->success("用户成功退出", "/Login-index");
+            $this->success("用户成功退出", __APP__ . "/Login-index");
         }
     }
 

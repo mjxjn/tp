@@ -6,13 +6,14 @@ class AdminModel extends CommonModel{
         array('name','','用户名已经存在！',0,'unique',1),// 在新增的时候验证name字段是否唯一
         array('repwd','pwd','确认密码不正确',0,'confirm'),
         array('pwd','/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{5,22}$/i','密码格式不正确',0,'regex'),
-        //array('name','/^[\u4e00-\u9fa5]+$/','用户名格式不正确',0,'regex'),
+//        array('name','/^[\u4e00-\u9fa5]+$/i','用户名格式不正确',0,'regex'),
         array('name','checkName','帐号错误！',1,'callback',4),  // 只在登录时候验证
         array('pwd','checkPwd','密码错误！',1,'callback',4), // 只在登录时候验证
     );
     protected $_auto = array(
         array('password','',2,'ignore'),
         array('flag','1'),
+        array('login_count',1),
         array('password','md5',3,'function'),
         array('cre_time','Mdate()',1,'function'),
         array('up_time','Mdate()',2,'function'),
@@ -25,7 +26,11 @@ class AdminModel extends CommonModel{
         ),
         
         'latest' => array(
-            'order' => 'cre_date DESC',
+            'order' => 'cre_time DESC',
+        ),
+        
+        'adminname' => array(
+            'field' => 'name',
         ),
     );
 

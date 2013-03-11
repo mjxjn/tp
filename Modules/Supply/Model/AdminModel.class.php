@@ -1,5 +1,5 @@
 <?php
-class AdminModel extends CommonModel{
+class AdminModel extends RelationModel{
     protected $_validate = array(
         array('name','require','用户名必须！'),
         array('pwd','require','密码必须！'),
@@ -31,6 +31,15 @@ class AdminModel extends CommonModel{
         
         'adminname' => array(
             'field' => 'name',
+        ),
+    );
+    protected $_link = array(
+        'Admin' => array(
+            'mapping_type' => HAS_MANY,
+            'class_name' => 'GoodsGroup',
+            'mapping_name' => 'GoodsGroup',
+            'foreign_key' => 'adminid',
+            'as_fields' => 'name',
         ),
     );
 

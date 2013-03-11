@@ -9,13 +9,11 @@ class GoodsAction extends CommonAction {
 
     public function orderList() {
         $GoodsGroup = D('GoodsGroup');
-        //$GoodsList = new GoodsListModel('GoodsList');
         import("ORG.Util.Page");// 导入分页类
 	$count = $GoodsGroup->scope('normal,latest')->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $GoodsGroup->relation(true)->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
-        echo $GoodsGroup->getLastSql();
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
@@ -64,7 +62,58 @@ class GoodsAction extends CommonAction {
             $this->error("数据导入失败，请重新导入！".$result);
         }
     }
+    
+    public function goodsList(){
+        $id=$this->_get('id');
+        if(empty($id)){
+            $this->error("参数错误");
+        }
+        $GoodsGroup = M('GoodsGroup');
+        $info = $GoodsGroup->where("id=".$id)->field("cre_time,oid")->find();
+        $GoodsList = D('GoodsList');
+        import("ORG.Util.Page");// 导入分页类
+	$count = $GoodsList->scope('normal,latest')->where("gid=".$id)->count();// 查询满足要求的总记录数
+	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+        $list = $GoodsList->scope('normal,latest')->relation(true)->where("gid=".$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('info',$info);
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display();
+    }
+    
+    public function search(){
+        $keyword = $this->_post('keyword');
+        if(empty($keyword)){
+            $this->error("搜索商品条形码不能为空！");
+        }
+        $GoodsList = D('GoodsList');
+        import("ORG.Util.Page");// 导入分页类
+	$count = $GoodsList->scope('normal,latest')->where("goods_code like '%".$keyword."%'")->count();// 查询满足要求的总记录数
+	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+        $list = $GoodsList->scope('normal,latest')->relation(true)->where("goods_code like '%".$keyword."%'")->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('keyword',$keyword);
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display();
+    }
 
+    public function goodsDel(){
+        $id=$this->_get('id');
+        if(empty($id)){
+            $this->error("参数错误");
+        }
+        $GoodsGroup = D('GoodsGroup');
+        $date['id']=$id;
+        $date['flag']=0;
+        $result = $GoodsGroup->save($date);
+        if($result){
+            $this->success("数据删除成功！",__APP__ . "/Goods-orderlist");
+        }else{
+            $this->error("数据删除失败！");
+        }
+    }
 }
 
 ?>

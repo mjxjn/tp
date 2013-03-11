@@ -46,35 +46,48 @@
                 <!-- Content Start { -->
                 <div class="content">
                     <!-- 路径导航 Start ｛ -->
-                    <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;商品订单列表</div>
+                    <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;商品订单搜索列表</div>
                     <!-- } 路径导航 End -->
                     
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="5">商品订单列表</td>
-                                <td class="table_action"><span class="table_action_ico"></span><a href="__APP__/Goods-upGoodsList">上传商品清单</a></td>
+                                <td colspan="7">商品订单搜索列表</td>
+                                <td colspan="3" class="table_action">
+                                    <form action="__APP__/Goods-search" name="form1" method="post">
+                                        <input type="text" name="keyword" value="<?php echo ($keyword); ?>" class="search" />
+                                        <input type="submit" name="submit" value="搜索" class="search_btn" />
+                                    </form>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="bg table_menu">
-                                <td width="10%"><input type="checkbox" name="" value="" /></td>
-                                <td width="20%" align="center">单号</td>
-                                <td width="10%" align="center">商品数量</td>
-                                <td width="20%" align="center">上传日期</td>
-                                <td width="20%" align="center">操作人</td>
-                                <td width="20%" align="center">操作</td>
+                                <td width="5%"><input type="checkbox" name="" value="" /></td>
+                                <td width="10%" align="center">商品条码</td>
+                                <td width="15%" align="center">商品名称</td>
+                                <td width="10%" align="center">商品规格</td>
+                                <td width="10%" align="center">商品型号</td>
+                                <td width="10%" align="center">商品陈列</td>
+                                <td width="10%" align="center">装箱数量</td>
+                                <td width="10%" align="center">供货商</td>
+                                <td width="10%" align="center">总仓补货</td>
+                                <td width="10%" align="center">和谐补货</td>
                             </tr>
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
-                                <td width="10%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
-                                <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
-                                <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
-                                <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
-                                <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
-                                <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<a href="__APP__/Purchase-creatPurchase-id-<?php echo ($vo["id"]); ?>">生成采购单</a>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                                <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
+                                <td width="15%" align="center"><?php echo ($vo["goods_name"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["specification"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["marque"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["display"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
+                                <td width="10%" align="center"><?php if(($$vo['sid']) == ""): ?>-<?php else: echo ($vo["sname"]); endif; ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["center"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["accord"]); ?></td>
                             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="6"><?php echo ($page); ?></td>
+                                <td colspan="10"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,15 +102,3 @@
         <!-- } Body End -->
     </body>
 </html>
-<SCRIPT LANGUAGE=javascript>
-
-function p_del() {
-var msg = "您真的确定要删除吗？\n\n请确认！";
-if (confirm(msg)==true){
-return true;
-}else{
-return false;
-}
-}
-
-</SCRIPT>

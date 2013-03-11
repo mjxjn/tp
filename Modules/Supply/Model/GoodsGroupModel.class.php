@@ -26,10 +26,10 @@ class GoodsGroupModel extends RelationModel {
         ),
     );
     protected $_link = array(
-        'profile' => array(
+        'Admin' => array(
             'mapping_type' => BELONGS_TO,
-            'class_name' => 'Admin',
-            'foreign_key' => 'id',
+            //'class_name' => 'Admin',
+            'foreign_key' => 'adminid',
             'as_fields' => 'name',
         ),
     );

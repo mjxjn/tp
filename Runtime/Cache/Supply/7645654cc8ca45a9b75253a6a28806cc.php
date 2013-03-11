@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -26,8 +26,8 @@
             <!-- Left Start { -->
             <div class="main_left">
                 <div class="admininfo">
-                    <p>欢迎您：{$_SESSION['loginUserName']}</p>
-                    <p>隶属部门：{$_SESSION['department']}</p>
+                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
+                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
                     <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
                 </div>
                 <div class="system_menu">
@@ -65,18 +65,16 @@
                                 <td width="20%" align="center">操作人</td>
                                 <td width="20%" align="center">操作</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
-                                <td width="10%"><input type="checkbox" name="" value="{$vo.id}" /></td>
-                                <td width="20%" align="center">{$vo.oid}</td>
-                                <td width="10%" align="center">{$vo.goods_num}</td>
-                                <td width="20%" align="center">{$vo.cre_time}</td>
-                                <td width="20%" align="center">{$vo.name}</td>
-                                <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-{$vo.id}">查看</a>&nbsp;&nbsp;<a href="__APP__/Purchase-creatPurchase-id-{$vo.id}">生成采购单</a>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
-                            </tr>
-                            </volist>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                                <td width="10%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
+                                <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<a href="">生成采购单</a>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="6">{$page}</td>
+                                <td colspan="6"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

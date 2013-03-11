@@ -65,14 +65,16 @@
                                 <td width="20%" align="center">操作人</td>
                                 <td width="20%" align="center">操作</td>
                             </tr>
+                            <volist name="list" id="vo">
                             <tr>
-                                <td width="10%"><input type="checkbox" name="" value="" /></td>
-                                <td width="20%" align="center">2023043423</td>
-                                <td width="10%" align="center">233</td>
-                                <td width="20%" align="center">2012-12-11 12:12:12</td>
-                                <td width="20%" align="center">董浩</td>
+                                <td width="10%"><input type="checkbox" name="" value="{$vo.id}" /></td>
+                                <td width="20%" align="center">{$vo.oid}</td>
+                                <td width="10%" align="center">{$vo.goods_num}</td>
+                                <td width="20%" align="center">{$vo.cre_time}</td>
+                                <td width="20%" align="center">{$vo.name}</td>
                                 <td width="20%" align="center"><a href="">查看</a>&nbsp;&nbsp;<a href="">生成采购单</a>&nbsp;&nbsp;<a href="">删除</a></td>
                             </tr>
+                            </volist>
                             <tr>
                                 <td colspan="6">{$page}</td>
                             </tr>

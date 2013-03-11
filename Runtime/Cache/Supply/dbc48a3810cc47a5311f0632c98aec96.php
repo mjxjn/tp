@@ -65,14 +65,14 @@
                                 <td width="20%" align="center">操作人</td>
                                 <td width="20%" align="center">操作</td>
                             </tr>
-                            <tr>
-                                <td width="10%"><input type="checkbox" name="" value="" /></td>
-                                <td width="20%" align="center">2023043423</td>
-                                <td width="10%" align="center">233</td>
-                                <td width="20%" align="center">2012-12-11 12:12:12</td>
-                                <td width="20%" align="center">董浩</td>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                                <td width="10%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
                                 <td width="20%" align="center"><a href="">查看</a>&nbsp;&nbsp;<a href="">生成采购单</a>&nbsp;&nbsp;<a href="">删除</a></td>
-                            </tr>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="6"><?php echo ($page); ?></td>
                             </tr>

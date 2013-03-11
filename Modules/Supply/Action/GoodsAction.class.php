@@ -8,6 +8,16 @@
 class GoodsAction extends CommonAction {
 
     public function orderList() {
+        $GoodsGroup = D('GoodsGroup');
+        //$GoodsList = new GoodsListModel('GoodsList');
+        import("ORG.Util.Page");// 导入分页类
+	$count = $GoodsGroup->scope('normal,latest')->count();// 查询满足要求的总记录数
+	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+        $list = $GoodsGroup->relation(true)->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
+        echo $GoodsGroup->getLastSql();
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
         $this->display();
     }
 
@@ -30,16 +40,29 @@ class GoodsAction extends CommonAction {
         setlocale(LC_ALL, 'en_US.UTF-8');    //读之前 防止中文乱码
         $file = fopen('./Public/Uploads/'.$info[0]['savename'],"r"); //只读形式打开文件
         $row = 0;             
-        //$repeat_arr    = array();                                   //保存重复的行数                                   //保存插入tp_server的ser_ids
+        $repeat_arr    = array();                                   //保存重复的行数                                   //保存插入tp_server的ser_ids
         while ($data = fgetcsv($file, 1001, ',')) {     //开始读取csv文件
             $row++;
             if ($row == 1) {
                 continue;
             }
-            $servname = iconv("GBK","UTF-8",trim($data[0]));
-            dump($servname);
-        }      
+            $repeat_arr[$row]['goods_code'] = iconv("GBK","UTF-8",trim($data[0]));
+            $repeat_arr[$row]['goods_name'] = iconv("GBK","UTF-8",trim($data[1]));
+            $repeat_arr[$row]['specification'] = iconv("GBK","UTF-8",trim($data[2]));
+            $repeat_arr[$row]['marque'] = iconv("GBK","UTF-8",trim($data[3]));
+            $repeat_arr[$row]['display'] = iconv("GBK","UTF-8",trim($data[4]));
+            $repeat_arr[$row]['box_num'] = iconv("GBK","UTF-8",trim($data[5]));
+            $repeat_arr[$row]['center'] = iconv("GBK","UTF-8",trim($data[6]));
+            $repeat_arr[$row]['accord'] = iconv("GBK","UTF-8",trim($data[7]));
+        }
         fclose($file);                                                  //关闭文件
+        $goodsGroup = D('GoodsGroup');
+        $result = $goodsGroup->addGoodsGroup($repeat_arr);
+        if($result === TRUE){
+            $this->success("数据导入成功！", __APP__ . "/Goods-orderList");
+        }else{
+            $this->error("数据导入失败，请重新导入！".$result);
+        }
     }
 
 }

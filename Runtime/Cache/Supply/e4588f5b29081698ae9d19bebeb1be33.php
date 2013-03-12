@@ -52,8 +52,8 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="8">供货商:<?php echo ($info['supplier']); ?></td>
-                                <td class="table_action"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
+                                <td colspan="6">供货商:<?php echo ($info['supplier']); ?></td>
+                                <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,7 +78,7 @@
                                     <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="9"><?php echo ($page); ?></td>
+                                <td colspan="8"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

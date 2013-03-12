@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -27,8 +27,8 @@
             <!-- Left Start { -->
             <div class="main_left">
                 <div class="admininfo">
-                    <p>欢迎您：{$_SESSION['loginUserName']}</p>
-                    <p>隶属部门：{$_SESSION['department']}</p>
+                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
+                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
                     <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
                 </div>
                 <div class="system_menu">
@@ -50,10 +50,7 @@
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;添加新供货商</div>
                     <!-- } 路径导航 End -->
                     
-                    <div class="system_note">批量导入货商商品信息需下载数据模板填写并上传，上传完毕后系统会上传到供货商旗下，可以在供货商商品管理查看，建议文件大小不超过5MB</div>
-                    <div class="">
-                        <b>供货商名称：</b>
-                    </div>
+                    <div class="system_note">批量导入新供货商需下载数据模板填写并上传，上传完毕后系统会自动分配一个编号给供货商，可以在供货商管理列表查看，建议文件大小不超过5MB</div>
                     <div class="download_csv">
                         <h2>第一步&nbsp;下载数据模板（csv文件）：</h2>
                         <div class="">

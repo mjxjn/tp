@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -26,8 +26,8 @@
             <!-- Left Start { -->
             <div class="main_left">
                 <div class="admininfo">
-                    <p>欢迎您：{$_SESSION['loginUserName']}</p>
-                    <p>隶属部门：{$_SESSION['department']}</p>
+                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
+                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
                     <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
                 </div>
                 <div class="system_menu">
@@ -68,21 +68,19 @@
                                 <td width="10%" align="center">到货商品</td>
                                 <td width="15%" align="center">操作</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
-                                <td width="5%"><input type="checkbox" name="" value="{$vo.id}" /></td>
-                                <td width="10%" align="center">{$vo.sid}</td>
-                                <td width="10%" align="center">{$vo.Warehouse}</td>
-                                <td width="20%" align="center">{$vo.supplier}</td>
-                                <td width="5%" align="center">{$vo.goods_num}</td>
-                                <td width="15%" align="center">{$vo.cre_time}</td>
-                                <td width="10%" align="center"><eq name='vo.state' value='1'>未到货<else />已到货</eq></td>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                                <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["Warehouse"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["supplier"]); ?></td>
+                                <td width="5%" align="center"><?php echo ($vo["goods_num"]); ?></td>
+                                <td width="15%" align="center"><?php echo ($vo["cre_time"]); ?></td>
+                                <td width="10%" align="center"><?php if(($vo["state"]) == "1"): ?>未到货<?php else: ?>已到货<?php endif; ?></td>
                                 <td width="10%" align="center"><a href=''>导入</a></td>
-                                <td width="15%" align="center"><a href="__APP__/Purchase-purchaseList-id-{$vo.id}">查看</a>&nbsp;&nbsp;<a href="#">导出</a>&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
-                            </tr>
-                            </volist>
+                                <td width="15%" align="center"><a href="__APP__/Purchase-purchaseList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<a href="#">导出</a>&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="9">{$page}</td>
+                                <td colspan="9"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

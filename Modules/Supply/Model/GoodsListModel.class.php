@@ -32,11 +32,18 @@ class GoodsListModel extends RelationModel {
             'foreign_key' => 'adminid',
             'as_fields' => 'name',
         ),
+        'Supplier' => array(
+            'mapping_type' => BELONGS_TO,
+            'foreign_key' => 'sid',
+            'as_fields' => 'supplier',
+        ),
     );
 
     public function addGoods($gid, $rows) {
+        $SupplierGoods = D('SupplierGoods');
         foreach ($rows as $val) {
             $val['gid'] = $gid;
+            $val['sid'] = $SupplierGoods->getSupplierSid('$val["goods_code"]');
             $val['adminid'] = GetAdmin();
             $val['cre_time'] = Mdate();
             $result = $this->add($val);

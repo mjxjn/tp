@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -26,8 +26,8 @@
             <!-- Left Start { -->
             <div class="main_left">
                 <div class="admininfo">
-                    <p>欢迎您：{$_SESSION['loginUserName']}</p>
-                    <p>隶属部门：{$_SESSION['department']}</p>
+                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
+                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
                     <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
                 </div>
                 <div class="system_menu">
@@ -52,31 +52,42 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="5">商品订单列表</td>
-                                <td class="table_action"><span class="table_action_ico"></span><a href="__APP__/Goods-upGoodsList">上传商品清单</a></td>
+                                <td colspan="7">单号：<?php echo ($info["oid"]); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传日期：<?php echo ($info["cre_time"]); ?></td>
+                                <td colspan="3" class="table_action">
+                                    <form action="__APP__/Goods-search" name="form1" method="post">
+                                        <input type="text" name="keyword" value="" class="search" />
+                                        <input type="submit" name="submit" value="搜索" class="search_btn" />
+                                    </form>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="bg table_menu">
-                                <td width="10%"><input type="checkbox" name="" value="" /></td>
-                                <td width="20%" align="center">单号</td>
-                                <td width="10%" align="center">商品数量</td>
-                                <td width="20%" align="center">上传日期</td>
-                                <td width="20%" align="center">操作人</td>
-                                <td width="20%" align="center">操作</td>
+                                <td width="5%"><input type="checkbox" name="" value="" /></td>
+                                <td width="10%" align="center">商品条码</td>
+                                <td width="15%" align="center">商品名称</td>
+                                <td width="10%" align="center">商品规格</td>
+                                <td width="10%" align="center">商品型号</td>
+                                <td width="10%" align="center">商品陈列</td>
+                                <td width="10%" align="center">装箱数量</td>
+                                <td width="10%" align="center">供货商</td>
+                                <td width="10%" align="center">总仓补货</td>
+                                <td width="10%" align="center">和谐补货</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
-                                <td width="10%"><input type="checkbox" name="" value="{$vo.id}" /></td>
-                                <td width="20%" align="center">{$vo.oid}</td>
-                                <td width="10%" align="center">{$vo.goods_num}</td>
-                                <td width="20%" align="center">{$vo.cre_time}</td>
-                                <td width="20%" align="center">{$vo.name}</td>
-                                <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-{$vo.id}">查看</a>&nbsp;&nbsp;<eq name="vo.flag" value="1"><a href="__APP__/Purchase-creatPurchase-id-{$vo.id}">生成采购单</a><else />已生成采购单</eq>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
-                            </tr>
-                            </volist>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                                <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
+                                <td width="15%" align="center"><?php echo ($vo["goods_name"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["specification"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["marque"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["display"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
+                                <td width="10%" align="center"><?php if(($$vo['sid']) == ""): ?>-<?php else: echo ($vo["sname"]); endif; ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["center"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["accord"]); ?></td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="6">{$page}</td>
+                                <td colspan="10"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -91,15 +102,3 @@
         <!-- } Body End -->
     </body>
 </html>
-<SCRIPT LANGUAGE=javascript>
-
-function p_del() {
-var msg = "您真的确定要删除吗？\n\n请确认！";
-if (confirm(msg)==true){
-return true;
-}else{
-return false;
-}
-}
-
-</SCRIPT>

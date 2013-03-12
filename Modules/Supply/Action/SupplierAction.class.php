@@ -20,10 +20,21 @@ class SupplierAction extends CommonAction {
     }
 
     public function upSupplier() {
+        $sid = $this->_get('sid');
+        if(empty($sid)){
+            $this->error("参数错误！");
+        }
+        $Supplier = D("Supplier");
+        $info = $Supplier->scope('normal')->where('sid="'.$sid.'"')->field('sid,supplier')->find();
+        $this->assign('info',$info);
         $this->display();
     }
 
     public function csvUpload() {
+        $sid = $this->_post('sid');
+        if(empty($sid)){
+            $this->error("参数错误！");
+        }
         import('ORG.Net.UploadFile');
         $upload = new UploadFile(); // 实例化上传类
         $upload->maxSize = 3145728; // 设置附件上传大小
@@ -44,20 +55,18 @@ class SupplierAction extends CommonAction {
             if ($row == 1) {
                 continue;
             }
-            $repeat_arr[$row]['goods_code'] = iconv("GBK", "UTF-8", trim($data[0]));
-            $repeat_arr[$row]['goods_name'] = iconv("GBK", "UTF-8", trim($data[1]));
-            $repeat_arr[$row]['specification'] = iconv("GBK", "UTF-8", trim($data[2]));
-            $repeat_arr[$row]['marque'] = iconv("GBK", "UTF-8", trim($data[3]));
-            $repeat_arr[$row]['display'] = iconv("GBK", "UTF-8", trim($data[4]));
+            $repeat_arr[$row]['sid'] = $sid;
+            $repeat_arr[$row]['goods_code'] = iconv("GBK", "UTF-8", trim($data[1]));
+            $repeat_arr[$row]['goods_name'] = iconv("GBK", "UTF-8", trim($data[2]));
+            $repeat_arr[$row]['specification'] = iconv("GBK", "UTF-8", trim($data[3]));
+            $repeat_arr[$row]['marque'] = iconv("GBK", "UTF-8", trim($data[4]));
             $repeat_arr[$row]['box_num'] = iconv("GBK", "UTF-8", trim($data[5]));
-            $repeat_arr[$row]['center'] = iconv("GBK", "UTF-8", trim($data[6]));
-            $repeat_arr[$row]['accord'] = iconv("GBK", "UTF-8", trim($data[7]));
         }
         fclose($file);                                                  //关闭文件
-        $goodsGroup = D('GoodsGroup');
-        $result = $goodsGroup->addGoodsGroup($repeat_arr);
+        $SupplierGoods = D('SupplierGoods');
+        $result = $SupplierGoods->addSupplierGoods($repeat_arr);
         if ($result === TRUE) {
-            $this->success("数据导入成功！", __APP__ . "/Goods-orderList");
+            $this->success("数据导入成功！", __APP__ . "/Supplier-supplierGoods-sid-".$sid);
         } else {
             $this->error("数据导入失败，请重新导入！" . $result);
         }
@@ -115,7 +124,7 @@ class SupplierAction extends CommonAction {
             $this->error("参数错误！");
         }
         $Supplier = D("Supplier");
-        $info = $Supplier->scope('normal')->where('sid="'.$sid.'"')->field('supplier')->find();
+        $info = $Supplier->scope('normal')->where('sid="'.$sid.'"')->field('sid,supplier')->find();
         $SupplierGoods = D("SupplierGoods");
         import("ORG.Util.Page");// 导入分页类
 	$count = $SupplierGoods->scope('normal')->where("sid='".$sid."'")->count();// 查询满足要求的总记录数

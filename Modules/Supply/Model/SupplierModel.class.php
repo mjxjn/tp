@@ -27,6 +27,7 @@ class SupplierModel extends RelationModel {
             'order' => 'cre_time DESC',
         ),
     );
+    
 }
 
 ?>

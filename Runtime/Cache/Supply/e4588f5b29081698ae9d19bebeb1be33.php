@@ -53,7 +53,7 @@
                         <thead>
                             <tr class="table_top">
                                 <td colspan="6">供货商:<?php echo ($info['supplier']); ?></td>
-                                <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
+                                <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier-sid-<?php echo ($info['sid']); ?>">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
                             </tr>
                         </thead>
                         <tbody>

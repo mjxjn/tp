@@ -19,7 +19,7 @@ class GoodsGroupModel extends RelationModel {
     protected $_scope = array(
         //
         'normal' => array(
-            'where' => array('flag' => 1),
+            'where' => array('flag' => array('gt',0)),
         ),
         'latest' => array(
             'order' => 'cre_time DESC',

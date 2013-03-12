@@ -12,9 +12,9 @@ class PurchaseModel extends RelationModel{
     protected $_auto = array(
         array('flag', '1'),
         array('state','1'),
-        array('cre_time', 'Mdate()', 1, 'function'),
-        array('up_time', 'Mdate()', 2, 'function'),
-        array('adminid', 'GetAdmin()', 1, 'function'),
+        array('cre_time', 'Mdate', 1, 'function'),
+        array('up_time', 'Mdate', 2, 'function'),
+        array('adminid', 'GetAdmin', 1, 'function'),
     );
     protected $_scope = array(
         //

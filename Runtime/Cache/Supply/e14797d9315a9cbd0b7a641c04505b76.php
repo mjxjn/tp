@@ -35,8 +35,8 @@
                     <h2>商品智能补货系统</h2>
                     <ul>
                         <li><a href="__APP__/Goods-orderList">商品订单类表</a></li>
-                        <li><a href="__APP__/Goods-upGoodsList">上传商品清单</a></li>
-                        <li><a href="__APP__/Supplier-supplier" class="hover">供货商管理</a></li>
+                        <li><a href="__APP__/Goods-upGoodsList" class="hover">上传商品清单</a></li>
+                        <li><a href="__APP__/Supplier-supplier">供货商管理</a></li>
                         <li><a href="__APP__/Purchase-purchase">采购单管理</a></li>
                     </ul>
                 </div>
@@ -47,19 +47,15 @@
                 <!-- Content Start { -->
                 <div class="content">
                     <!-- 路径导航 Start ｛ -->
-                    <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;添加供货商商品</div>
+                    <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;上传商品清单</div>
                     <!-- } 路径导航 End -->
                     
-                    <div class="system_note">批量导入供货商商品信息需下载数据模板填写并上传，上传完毕后系统会上传到供货商旗下，可以在供货商商品管理查看，建议文件大小不超过5MB</div>
-                    <div class="">
-                        <p><b>供货商名称：<?php echo ($info['supplier']); ?></b></p>
-                        <p><b>供货商编号：<?php echo ($info['sid']); ?></b></p>
-                    </div>
+                    <div class="system_note">批量导入商品信息需下载数据模板填写并上传，上传完毕后系统会自动分配一个单号给上传的订单，可以在商品订单列表查看，建议文件大小不超过5MB</div>
                     <div class="download_csv">
                         <h2>第一步&nbsp;下载数据模板（csv文件）：</h2>
                         <div class="">
                             <div class="left w350 info_bg">
-                                <span class="down_ico"></span><a href="__PUBLIC__/Csv/supplierGoods.csv">下载数据模板</a>
+                                <span class="down_ico"></span><a href="__PUBLIC__/Csv/orderList.csv">下载数据模板</a>
                             </div>
                             <div class="left">
                                 数据模板格式为csv文件，使用Excel表格打开并填写商品信息
@@ -71,7 +67,7 @@
                     <div class="clear"></div>
                     <div class="upload_csv">
                         <h2>第二步&nbsp;上传数据模板（csv文件）：</h2>
-                        <form action="__APP__/Supplier-csvUpload" name="upload" method="post" enctype="multipart/form-data">
+                        <form action="__APP__/Goods-csvUpload" name="upload" method="post" enctype="multipart/form-data">
                         <div class="">
 <!--                            <div class="left w350 info_bg">
                                 <span class="up_ico"></span>上传数据模板
@@ -84,7 +80,7 @@
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <input type="submit" class="upload_btn" value="开始导入"/><input type="hidden" name="sid" value="<?php echo ($info['sid']); ?>" />
+                        <input type="submit" class="upload_btn" value="开始导入"/>
                         </form>
                     </div>
                 </div>

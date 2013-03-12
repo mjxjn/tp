@@ -1,0 +1,43 @@
+[ 2013-03-12T15:05:10+08:00 ] ERR: (ThinkException) Model:Mdate()您所请求的方法不存在！
+[ 2013-03-12T15:56:53+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001790s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002037s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004762s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.000382s ]
+
+[ 2013-03-12T15:57:13+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002171s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.005140s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.000392s ]
+
+[ 2013-03-12T16:01:19+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000865s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004503s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000646s ]
+
+[ 2013-03-12T16:01:43+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001004s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.007923s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000581s ]
+
+[ 2013-03-12T16:02:22+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001638s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.005062s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000409s ]
+
+[ 2013-03-12T16:05:27+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001761s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001908s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004922s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=5 ) LIMIT 1   [ RunTime:0.000426s ]
+

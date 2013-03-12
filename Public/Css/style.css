@@ -93,3 +93,13 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .download_btn{clear: both; background: url(../images/all_ico.gif) -33px 0px no-repeat; display: inline-block;width: 25px;height: 35px; margin: 10px 0 10px 90px;}
 .up_ico{background: url(../images/all_ico.gif) -34px -53px no-repeat; display: inline-block;width: 17px;height: 17px;}
 .upload_btn{clear: both; margin-left: 20px;background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center;margin-top: 25px; border: 0; cursor: pointer;}
+
+/*添加供货商*/
+.addsupplier{ position: fixed; top: 120px; left: 420px; width: 643px; display: none;}
+.addsupplier_title{background: url('../images/supply_title.jpg') no-repeat;width: 643px; height: 35px;}
+.closesupplier{ display: block;width: 15px; height: 15px; float: right; margin: 9px 12px;}
+.supplytable{ background: #f1f1f1; width: 643px; border-width: 0 1px 1px; border-style: solid; border-color: #4582BC; }
+.supplytable tr{width: 642px;}
+.supplytable td{ padding: 7px 0 0 20px; width: 623px;}
+.inputtxt{width: 250px;}
+.inputbtn{background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center; border: 0; cursor: pointer; margin-bottom: 20px; }

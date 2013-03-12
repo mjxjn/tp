@@ -15,9 +15,9 @@ class AdminModel extends RelationModel{
         array('flag','1'),
         array('login_count',1),
         array('password','md5',3,'function'),
-        array('cre_time','Mdate()',1,'function'),
-        array('up_time','Mdate()',2,'function'),
-        array('last_login','Mdate()',3,'function'),
+        array('cre_time','Mdate',1,'function'),
+        array('up_time','Mdate',2,'function'),
+        array('last_login','Mdate',3,'function'),
     );
     protected $_scope = array(
         //

@@ -4,7 +4,7 @@ return array(
     'DB_HOST'                   =>  'localhost',
     'DB_NAME'                   =>  'reshop',
     'DB_USER'                   =>  'root',
-    'DB_PWD'                    =>  '236236',
+    'DB_PWD'                    =>  '',
     'DB_PORT'                   =>  '3306',
     'DB_PREFIX'                 =>  'rs_',
     
@@ -22,8 +22,8 @@ return array(
     'REQUIRE_AUTH_ACTION'       =>  '',		// 默认需要认证操作
     'GUEST_AUTH_ON'             =>  false,    // 是否开启游客授权访问
     'GUEST_AUTH_ID'             =>  0,        // 游客的用户ID
-    'RBAC_ROLE_TABLE'           =>  'think_role',
-    'RBAC_USER_TABLE'           =>  'think_role_user',
-    'RBAC_ACCESS_TABLE'         =>  'think_access',
-    'RBAC_NODE_TABLE'           =>  'think_node',
+    'RBAC_ROLE_TABLE'           =>  'rs_role',
+    'RBAC_USER_TABLE'           =>  'rs_role_user',
+    'RBAC_ACCESS_TABLE'         =>  'rs_access',
+    'RBAC_NODE_TABLE'           =>  'rs_node',
 );

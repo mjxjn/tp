@@ -11,7 +11,7 @@ class SupplierAction extends CommonAction {
         $Supplier = D('Supplier');
         import("ORG.Util.Page");// 导入分页类
 	$count = $Supplier->scope('normal,latest')->count();// 查询满足要求的总记录数
-	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
+	$Page = new Page($count,'13');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $Supplier->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
@@ -118,6 +118,22 @@ class SupplierAction extends CommonAction {
         echo json_encode($return);
     }
     
+    public function AjaxGetSupplierGoods(){
+        $id = $this->_post('id');
+        if(empty($id)){
+            $this->error("参数错误！");
+        }
+        $SupplierGoods = D('SupplierGoods');
+        $info = $SupplierGoods->scope('normal')->where('id='.$id)->find();
+        if(!empty($info)){
+            $return['state']=0;
+            $return['info']=$info;
+        }else{
+            $return['state']=1;
+        }
+        echo json_encode($return);
+    }
+
     public function supplierGoods(){
         $sid = $this->_get('sid');
         if(empty($sid)){
@@ -128,7 +144,7 @@ class SupplierAction extends CommonAction {
         $SupplierGoods = D("SupplierGoods");
         import("ORG.Util.Page");// 导入分页类
 	$count = $SupplierGoods->scope('normal')->where("sid='".$sid."'")->count();// 查询满足要求的总记录数
-	$Page = new Page($count,'18');// 实例化分页类 传入总记录数和每页显示的记录数
+	$Page = new Page($count,'15');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $SupplierGoods->scope('normal')->where("sid='".$sid."'")->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
@@ -149,6 +165,23 @@ class SupplierAction extends CommonAction {
             $this->success("删除供货商成功", __APP__ . "/Supplier-supplier");
         }else{
             $this->error("删除供货商失败！");
+        }
+    }
+    
+    public function saveSupplierGoods(){
+        $id = $this->_post('id');
+        if(empty($id)){
+            $this->error("参数错误！");
+        }
+        $SupplierGoods = D('SupplierGoods');
+        if($SupplierGoods->create()){
+            if($SupplierGoods->save()){
+                $this->success("商品信息修改成功！");
+            }else{
+                $this->error("商品信息修改失败！");
+            }
+        }else{
+            $this->error($SupplierGoods->getError());
         }
     }
 }

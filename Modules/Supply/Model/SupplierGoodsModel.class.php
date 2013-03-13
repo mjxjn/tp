@@ -29,16 +29,15 @@ class SupplierGoodsModel extends RelationModel {
         ),
     );
     
-    public function addSupplierGoods($rows){
+    public function addSupplierGoods($rows) {
         foreach ($rows as $val) {
-            if($this->create($val)){
-                if($this->add()){
-                    //return TRUE;
-                }else{
-                    return FALSE;
-                }
-            }else{
-                return $this->getError();
+            $val['adminid'] = GetAdmin();
+            $val['flag'] = 1;
+            $val['cre_time'] = Mdate();
+            if ($this->add($val)) {
+                //return TRUE;
+            } else {
+                return FALSE;
             }
         }
         return TRUE;

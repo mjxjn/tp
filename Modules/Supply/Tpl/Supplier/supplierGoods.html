@@ -76,7 +76,7 @@
                                     <td width="10%" align="center">{$vo.specification}</td>
                                     <td width="10%" align="center">{$vo.marque}</td>
                                     <td width="10%" align="center">{$vo.box_num}</td>
-                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('{$vo.id}');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
+                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplierGoods('{$vo.id}');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
                                 </tr>
                             </volist>
                             <tr>
@@ -89,59 +89,52 @@
                 <!-- AddSupplier Start { -->
                 <div class="addsupplier">
                     <div class="addsupplier_title"><a href="#" onclick="javascript:closesupplier();" class="closesupplier"></a></div>
-                    <form action="__APP__/Supplier-addsupplier" method="post" name="form1" id="form1">
+                    <form action="__APP__/Supplier-saveSupplierGoods" method="post" name="form1" id="form1">
                         <table border="0" cellpadding="0" cellspacing="0" class="supplytable">
                             <tr>
-                                <td colspan="2"><b>供货商名称设置</b></td>
+                                <td colspan="2"><b>供货商编号</b></td>
                             </tr>
                             <tr>
-                                <td width="200"><input type="text" class="inputtxt" name="supplier" value="" /></td>
+                                <td width="200"><input type="text" class="inputtxt" name="sid" value="" /></td>
                                 <td>设置当前供货商名称</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商编号设置</b></td>
+                                <td colspan="2"><b>商品条码</b></td>
                             </tr>
                             <tr>
-                                <td><input type="text" class="inputtxt" name="sid" value="" /></td>
+                                <td><input type="text" class="inputtxt" name="goods_code" value="" /></td>
                                 <td>设置供货商编号，编号不可重复</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商联系人</b></td>
+                                <td colspan="2"><b>商品名称</b></td>
                             </tr>
                             <tr>
-                                <td><input type="text" class="inputtxt" name="name" value="" /></td>
+                                <td><input type="text" class="inputtxt" name="goods_name" value="" /></td>
                                 <td>设置供货商联系人姓名</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商联系人手机</b></td>
+                                <td colspan="2"><b>商品规格</b></td>
                             </tr>
                             <tr>
-                                <td><input type="text" class="inputtxt" name="phone" value="" /></td>
+                                <td><input type="text" class="inputtxt" name="specification" value="" /></td>
                                 <td>设置供货商联系人手机，手机号和座机号必须一项</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商座机号</b></td>
+                                <td colspan="2"><b>商品型号</b></td>
                             </tr>
                             <tr>
-                                <td><input type="text" class="inputtxt" name="tel" value="" /></td>
+                                <td><input type="text" class="inputtxt" name="marque" value="" /></td>
                                 <td>设置供货商座机号，手机号和座机号必须一项</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商传真号</b></td>
+                                <td colspan="2"><b>装箱数量 </b></td>
                             </tr>
                             <tr>
-                                <td><input type="text" class="inputtxt" name="fax" value="" /></td>
+                                <td><input type="text" class="inputtxt" name="box_num" value="" /></td>
                                 <td>设置供货商传真号，选填</td>
                             </tr>
                             <tr>
-                                <td colspan="2"><b>供货商地址</b></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" class="inputtxt" name="address" value="" /></td>
-                                <td>设置供货商详细地址</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="center"><input type="submit" class="inputbtn" name="submit" value="保存" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:closesupplier();" name="button" value="取消" class="inputbtn" /><input type="hidden" name="act" value="add" /><input type="hidden" name="id" value="" /></td>
+                                <td colspan="2" width="620" align="center"><input type="submit" class="inputbtn" name="submit" value="保存" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:closesupplier();" name="button" value="取消" class="inputbtn" /><input type="hidden" name="id" value="" /></td>
                             </tr>
                         </table>
                     </form>
@@ -166,35 +159,53 @@
                                             return false;
                                         }
                                     }
-
-                                    function addsupplier() {
-                                        $('.addsupplier').show();
-                                    }
-                                    function closesupplier() {
+                                    
+                                    function closesupplier(){
                                         $('.addsupplier').hide();
                                     }
-                                    function editSupplier(id) {
+
+                                    function editSupplierGoods(id) {
                                         $.ajax({
                                             type: "POST",
-                                            url: "__APP__/Supplier-AjaxGetSupplierInfo",
+                                            url: "__APP__/Supplier-AjaxGetSupplierGoods",
                                             data: "id="+id,
                                             dataType: 'json',
                                             success: function(msg) {
                                                 if(msg['state']===1){
                                                     alert("参数错误！");
                                                 }else{
-                                                    $("input[name='id']").attr('value',msg['info']['id']);
-                                                    $("input[name='supplier']").attr('value',msg['info']['supplier']);
                                                     $("input[name='sid']").attr('value',msg['info']['sid']);
-                                                    $("input[name='name']").attr('value',msg['info']['name']);
-                                                    $("input[name='phone']").attr('value',msg['info']['phone']);
-                                                    $("input[name='tel']").attr('value',msg['info']['tel']);
-                                                    $("input[name='fax']").attr('value',msg['info']['fax']);
-                                                    $("input[name='address']").attr('value',msg['info']['address']);
-                                                    $("input[name='act']").attr('value','save');
+                                                    $("input[name='goods_code']").attr('value',msg['info']['goods_code']);
+                                                    $("input[name='goods_name']").attr('value',msg['info']['goods_name']);
+                                                    $("input[name='specification']").attr('value',msg['info']['specification']);
+                                                    $("input[name='marque']").attr('value',msg['info']['marque']);
+                                                    $("input[name='box_num']").attr('value',msg['info']['box_num']);
+                                                    $("input[name='id']").attr('value',id);
                                                     $('.addsupplier').show();
                                                 }
                                             }
                                         });
                                     }
+var _move=false;//移动标记
+var _x,_y;//鼠标离控件左上角的相对位置
+$(document).ready(function(){
+    $(".addsupplier_title").click(function(){
+        //alert("click");//点击（松开后触发）
+        }).mousedown(function(e){
+        _move=true;
+        _x=e.pageX-parseInt($(".addsupplier").css("left"));
+        _y=e.pageY-parseInt($(".addsupplier").css("top"));
+        $(".addsupplier").fadeTo(20, 0.25);//点击后开始拖动并透明显示
+    });
+    $(document).mousemove(function(e){
+        if(_move){
+            var x=e.pageX-_x;//移动时根据鼠标位置计算控件左上角的绝对位置
+            var y=e.pageY-_y;
+            $(".addsupplier").css({top:y,left:x});//控件新位置
+        }
+    }).mouseup(function(){
+    _move=false;
+    $(".addsupplier").fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
+  });
+});
 </SCRIPT>

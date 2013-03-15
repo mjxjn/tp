@@ -52,7 +52,7 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="7">供货商：&nbsp;&nbsp;生成日期：</td>
+                                <td colspan="7">仓库：{$Warehouse}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供货商：{$supplier}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成日期：{$cre_time}</td>
                                 <td class="table_action" colspan="3">
                                     
                                 </td>
@@ -64,12 +64,12 @@
                                 <td width="10%" align="center">商品条码</td>
                                 <td width="10%" align="center">商品名称</td>
                                 <td width="20%" align="center">商品规格</td>
-                                <td width="5%" align="center">商品型号</td>
+                                <td width="10%" align="center">商品型号</td>
                                 <td width="15%" align="center">商品陈列</td>
                                 <td width="10%" align="center">装箱数量</td>
                                 <td width="10%" align="center">供货商</td>
-                                <td width="10%" align="center">补货数量</td>
-                                <td width="10%" align="center">到货情况</td>
+                                <td width="5%" align="center">补货数量</td>
+                                <td width="5%" align="center">到货情况</td>
                             </tr>
                             <volist name="list" id="vo" mod="2">
                                 <tr <eq name="mod" value="1">bg</eq>>
@@ -77,12 +77,20 @@
                                 <td width="10%" align="center">{$vo.goods_code}</td>
                                 <td width="10%" align="center">{$vo.goods_name}</td>
                                 <td width="20%" align="center">{$vo.specification}</td>
-                                <td width="5%" align="center">{$vo.marque}</td>
+                                <td width="10%" align="center">{$vo.marque}</td>
                                 <td width="15%" align="center">{$vo.display}</td>
                                 <td width="10%" align="center">{$vo.box_num}</td>
-                                <td width="10%" align="center"> - </td>
-                                <td width="15%" align="center">{$vo.goods_num}</td>
-                                <td width="15%" align="center">{$vo.get_goods_num}</td>
+                                <td width="10%" align="center">{$supplier}</td>
+                                <td width="5%" align="center">{$vo.goods_num}</td>
+                                <td width="5%" align="center">
+                                    <if condition="$vo['get_goods_num'] eq $vo['goods_num']" >
+                                        <span class="ok"></span>
+                                    <elseif condition="$vo['get_goods_num'] lt $vo['goods_num']" />
+                                        {$vo.get_goods_num}
+                                    <else />
+                                        <font color="blue">{$vo.get_goods_num}</font>
+                                    </if>
+                                </td>
                             </tr>
                             </volist>
                             <tr>

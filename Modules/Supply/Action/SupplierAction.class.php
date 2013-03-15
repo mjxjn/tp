@@ -155,11 +155,13 @@ class SupplierAction extends CommonAction {
     
     public function supplierDel(){
         $id = $this->_get('id');
-        if(empty($id)){
+        $sid = $this->_get('sid');
+        if(empty($id)&&empty($sid)){
             $this->error("参数错误！");
         }
         $Supplier = D("Supplier");
         $data['id']=$id;
+        $data['sid']=$sid;
         $data['flag']=0;
         if($Supplier->save($data)){
             $this->success("删除供货商成功", __APP__ . "/Supplier-supplier");

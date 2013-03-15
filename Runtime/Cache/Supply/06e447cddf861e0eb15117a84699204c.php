@@ -52,7 +52,7 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="7">供货商：&nbsp;&nbsp;生成日期：</td>
+                                <td colspan="7">仓库：<?php echo ($Warehouse); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供货商：<?php echo ($supplier); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成日期：<?php echo ($cre_time); ?></td>
                                 <td class="table_action" colspan="3">
                                     
                                 </td>
@@ -64,24 +64,30 @@
                                 <td width="10%" align="center">商品条码</td>
                                 <td width="10%" align="center">商品名称</td>
                                 <td width="20%" align="center">商品规格</td>
-                                <td width="5%" align="center">商品型号</td>
+                                <td width="10%" align="center">商品型号</td>
                                 <td width="15%" align="center">商品陈列</td>
                                 <td width="10%" align="center">装箱数量</td>
                                 <td width="10%" align="center">供货商</td>
-                                <td width="10%" align="center">补货数量</td>
-                                <td width="10%" align="center">到货情况</td>
+                                <td width="5%" align="center">补货数量</td>
+                                <td width="5%" align="center">到货情况</td>
                             </tr>
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
                                 <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
                                 <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["goods_name"]); ?></td>
                                 <td width="20%" align="center"><?php echo ($vo["specification"]); ?></td>
-                                <td width="5%" align="center"><?php echo ($vo["marque"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["marque"]); ?></td>
                                 <td width="15%" align="center"><?php echo ($vo["display"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
-                                <td width="10%" align="center"> - </td>
-                                <td width="15%" align="center"><?php echo ($vo["goods_num"]); ?></td>
-                                <td width="15%" align="center"><?php echo ($vo["get_goods_num"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($supplier); ?></td>
+                                <td width="5%" align="center"><?php echo ($vo["goods_num"]); ?></td>
+                                <td width="5%" align="center">
+                                    <?php if($vo['get_goods_num'] == $vo['goods_num']): ?><span class="ok"></span>
+                                    <?php elseif($vo['get_goods_num'] < $vo['goods_num']): ?>
+                                        <?php echo ($vo["get_goods_num"]); ?>
+                                    <?php else: ?>
+                                        <font color="blue"><?php echo ($vo["get_goods_num"]); ?></font><?php endif; ?>
+                                </td>
                             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="10"><?php echo ($page); ?></td>

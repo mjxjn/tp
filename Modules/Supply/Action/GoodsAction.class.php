@@ -37,21 +37,24 @@ class GoodsAction extends CommonAction {
         }
         setlocale(LC_ALL, 'en_US.UTF-8');    //读之前 防止中文乱码
         $file = fopen('./Public/Uploads/'.$info[0]['savename'],"r"); //只读形式打开文件
-        $row = 0;             
-        $repeat_arr    = array();                                   //保存重复的行数                                   //保存插入tp_server的ser_ids
+        $row = 0;              //保存重复的行数                                   
+        $repeat_arr    = array();                                  //保存插入tp_server的ser_ids
+        $SupplierGoods = D('SupplierGoods');
         while ($data = fgetcsv($file, 1001, ',')) {     //开始读取csv文件
             $row++;
             if ($row == 1) {
                 continue;
             }
-            $repeat_arr[$row]['goods_code'] = iconv("GBK","UTF-8",trim($data[0]));
+            $repeat_arr[$row]['goods_code'] = trim($data[0]);
             $repeat_arr[$row]['goods_name'] = iconv("GBK","UTF-8",trim($data[1]));
             $repeat_arr[$row]['specification'] = iconv("GBK","UTF-8",trim($data[2]));
             $repeat_arr[$row]['marque'] = iconv("GBK","UTF-8",trim($data[3]));
             $repeat_arr[$row]['display'] = iconv("GBK","UTF-8",trim($data[4]));
-            $repeat_arr[$row]['box_num'] = iconv("GBK","UTF-8",trim($data[5]));
+            $repeat_arr[$row]['box_num'] = trim($data[5]);
             $repeat_arr[$row]['center'] = iconv("GBK","UTF-8",trim($data[6]));
             $repeat_arr[$row]['accord'] = iconv("GBK","UTF-8",trim($data[7]));
+            $info = $SupplierGoods->where('goods_code="'.$repeat_arr[$row]['goods_code'].'"')->field('sid')->find();
+            $repeat_arr[$row]['sid'] = $info['sid'];
         }
         fclose($file);                                                  //关闭文件
         $goodsGroup = D('GoodsGroup');
@@ -75,7 +78,7 @@ class GoodsAction extends CommonAction {
 	$count = $GoodsList->scope('normal,latest')->where("gid=".$id)->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'13');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
-        $list = $GoodsList->scope('normal,latest')->relation(true)->where("gid=".$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $GoodsList->scope('normal,latest')->relation('Supplier')->where("gid=".$id)->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('info',$info);
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出

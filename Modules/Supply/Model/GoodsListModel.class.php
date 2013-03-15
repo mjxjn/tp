@@ -23,7 +23,7 @@ class GoodsListModel extends RelationModel {
             'where' => array('flag' => 1),
         ),
         'latest' => array(
-            'order' => 'cre_time DESC',
+            'order' => 'id ASC',
         ),
     );
     protected $_link = array(
@@ -35,15 +35,16 @@ class GoodsListModel extends RelationModel {
         'Supplier' => array(
             'mapping_type' => BELONGS_TO,
             'foreign_key' => 'sid',
+            'parent_key' => 'swid',
+            'mapping_fields' => 'supplier',
             'as_fields' => 'supplier',
         ),
     );
 
     public function addGoods($gid, $rows) {
-        $SupplierGoods = D('SupplierGoods');
+       
         foreach ($rows as $val) {
             $val['gid'] = $gid;
-            $val['sid'] = $SupplierGoods->getSupplierSid('$val["goods_code"]');
             $val['adminid'] = GetAdmin();
             $val['cre_time'] = Mdate();
             $result = $this->add($val);

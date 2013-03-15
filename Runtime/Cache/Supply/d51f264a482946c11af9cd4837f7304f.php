@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -27,8 +27,8 @@
             <!-- Left Start { -->
             <div class="main_left">
                 <div class="admininfo">
-                    <p>欢迎您：{$_SESSION['loginUserName']}</p>
-                    <p>隶属部门：{$_SESSION['department']}</p>
+                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
+                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
                     <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
                 </div>
                 <div class="system_menu">
@@ -52,9 +52,9 @@
                     
                     <div class="system_note">批量导入补货信息需下载数据模板填写并上传，上传完毕后系统会上传到采购单下，可以在采购单管理查看补货详情，建议文件大小不超过5MB</div>
                     <div class="">
-                        <p><b>补货仓库：{$Warehouse}</b></p>
-                        <p><b>对应采购单编号：{$oid}</b></p>
-                        <p><b>供货商：{$supplier}</b></p>
+                        <p><b>补货仓库：<?php echo ($Warehouse); ?></b></p>
+                        <p><b>对应采购单编号：<?php echo ($oid); ?></b></p>
+                        <p><b>供货商：<?php echo ($supplier); ?></b></p>
                     </div>
                     <div class="download_csv">
                         <h2>第一步&nbsp;下载数据模板（csv文件）：</h2>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <input type="submit" class="upload_btn" value="开始导入"/><input type="hidden" name="id" value="{$id}" />
+                        <input type="submit" class="upload_btn" value="开始导入"/><input type="hidden" name="id" value="<?php echo ($id); ?>" />
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,42 @@
+[ 2013-03-14T09:01:57+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001487s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001748s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.009795s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000869s ]
+
+[ 2013-03-14T13:49:05+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001162s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001320s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.006953s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=6 ) LIMIT 1   [ RunTime:0.002126s ]
+
+[ 2013-03-14T13:49:10+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001570s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.008242s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=6 ) LIMIT 1   [ RunTime:0.000757s ]
+
+[ 2013-03-14T13:49:12+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001466s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.008758s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=6 ) LIMIT 1   [ RunTime:0.000959s ]
+
+[ 2013-03-14T13:49:12+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001639s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001844s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.008274s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=6 ) LIMIT 1   [ RunTime:0.001359s ]
+
+[ 2013-03-14T13:49:14+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001981s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002203s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.008034s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=6 ) LIMIT 1   [ RunTime:0.001106s ]
+

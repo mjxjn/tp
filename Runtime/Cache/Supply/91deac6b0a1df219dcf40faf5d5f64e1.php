@@ -77,7 +77,7 @@
                                     <td width="10%" align="center"><?php echo ($vo["address"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["tel"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["fax"]); ?></td>
-                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoods-sid-<?php echo ($vo["sid"]); ?>">商品</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoods-sid-<?php echo ($vo["sid"]); ?>">商品</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierDel-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>" onclick="javascript:return p_del();">删除</a></td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="9"><?php echo ($page); ?></td>

@@ -82,7 +82,7 @@
                                 <td width="10%" align="center"><?php echo ($vo["marque"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["display"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
-                                <td width="10%" align="center"><?php if(($$vo['sid']) == ""): ?>-<?php else: echo ($vo["sname"]); endif; ?></td>
+                                <td width="10%" align="center"><?php if(($vo["supplier"]) == ""): ?>-<?php else: echo ($vo["supplier"]); endif; ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["center"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["accord"]); ?></td>
                             </tr><?php endforeach; endif; else: echo "" ;endif; ?>

@@ -126,8 +126,7 @@ class PurchaseAction extends CommonAction {
         }
         $Purchase = D('Purchase');
         $data['id']=$id;
-        $data['flag']=0;
-        if($Purchase->save($data)){
+        if($Purchase->delete($data)){
             $this->success("删除采购单成功", __APP__ . "/Purchase-purchase");
         }else{
             $this->error("删除采购单失败！");
@@ -229,6 +228,16 @@ class PurchaseAction extends CommonAction {
         }else{
             $this->error("数据导入失败，请重新导入！".$result);
         }
+    }
+    
+    public function excelPurchase(){
+        $id = $this->_get('id');
+        $sid = $this->_get('sid');
+        if(empty($id)&&empty($sid)){
+            $this->error("参数错误！");
+        }
+        Vendor("PHPExcel.PHPExcel");
+        
     }
 
 }

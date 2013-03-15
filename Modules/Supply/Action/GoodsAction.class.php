@@ -109,8 +109,7 @@ class GoodsAction extends CommonAction {
         }
         $GoodsGroup = D('GoodsGroup');
         $date['id']=$id;
-        $date['flag']=0;
-        $result = $GoodsGroup->save($date);
+        $result = $GoodsGroup->delete($date);
         if($result){
             $this->success("数据删除成功！",__APP__ . "/Goods-orderList");
         }else{

@@ -32,8 +32,8 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .txt_f4f4f4{color: #f4f4f4;}  /*分页未选中*/
 
 /*登陆*/
-.login{background-color: #464c6c; padding: 0;margin: 0;}
-.loginbg{background: url('../images/login_bg.jpg') no-repeat;width: 1150px; min-height: 734px; margin: 0 auto;}
+.login{background: url('../images/bg.jpg') no-repeat;  margin: 0 auto;}
+.loginbg{background: url('../images/login_bg.png') no-repeat;width: 1150px; min-height: 734px; margin: 0 auto;}
 #form{padding: 419px 0 0 293px;}
 .login_input{width: 232px;height: 31px;line-height: 31px;font-size: 25px;padding: 10px 0 10px 10px; border: 0;}
 .login_name{float: left; position: relative;}

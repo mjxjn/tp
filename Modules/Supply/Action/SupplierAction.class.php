@@ -162,8 +162,7 @@ class SupplierAction extends CommonAction {
         $Supplier = D("Supplier");
         $data['id']=$id;
         $data['sid']=$sid;
-        $data['flag']=0;
-        if($Supplier->save($data)){
+        if($Supplier->delete($data)){
             $this->success("删除供货商成功", __APP__ . "/Supplier-supplier");
         }else{
             $this->error("删除供货商失败！");

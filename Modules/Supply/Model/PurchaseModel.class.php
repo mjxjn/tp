@@ -5,13 +5,13 @@
  *
  * @author maxiang
  */
-class PurchaseModel extends RelationModel{
+class PurchaseModel extends RelationModel {
+
     protected $_validate = array(
-        
     );
     protected $_auto = array(
         array('flag', '1'),
-        array('state','1'),
+        array('state', '1'),
         array('cre_time', 'Mdate', 1, 'function'),
         array('up_time', 'Mdate', 2, 'function'),
         array('adminid', 'GetAdmin', 1, 'function'),
@@ -37,27 +37,40 @@ class PurchaseModel extends RelationModel{
             'as_fields' => 'sname',
         ),
     );
-    
-    public function addPurchaseGoods($rows,$id,$sum){
-        $Pinfo = $this->scope('normal')->where('id='.$id)->find();
-        $data['id']=$id;
-        if($Pinfo['goods_num'] >= $sum){
-            $data['state']=2;
-            $data['up_time']=  Mdate();
+
+    public function addPurchaseGoods($rows, $id, $sum) {
+        $Pinfo = $this->scope('normal')->where('id=' . $id)->find();
+        $data['id'] = $id;
+        if ($Pinfo['goods_num'] >= $sum) {
+            $data['state'] = 2;
+            $data['up_time'] = Mdate();
             $this->save($data);
         }
-        $PurchaseList = M('PurchaseList');
+        $PurchaseList = D('PurchaseList');
         foreach ($rows as $value) {
-            if($PurchaseList->where('goods_code = "'.$value['goods_code'].'" and pid='.$id)->save($value)){
-                
-            }else{
-                //$PurchaseList->add($value);
-                return FALSE;
+            $result = $PurchaseList->scope('normal')->where('goods_code = "' . $value['goods_code'] . '" and pid=' . $id)->field('id')->find();
+            if (empty($result)) {
+                $value['pid'] =  $id;
+                $value['cre_time'] =  Mdate();
+                $value['adminid'] =  GetAdmin();
+                $value['flag'] =  1;
+                $value['state'] =  2;
+                if ($PurchaseList->add($value)) {
+                    
+                } else {
+                    return FALSE;
+                }
+            } else {
+                if ($PurchaseList->where('goods_code = "' . $value['goods_code'] . '" and pid=' . $id)->save($value)) {
+                    
+                } else {
+                    return FALSE;
+                }
             }
         }
         return TRUE;
     }
-    
+
 }
 
 ?>

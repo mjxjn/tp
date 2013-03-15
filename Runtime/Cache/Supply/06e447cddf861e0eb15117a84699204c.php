@@ -71,7 +71,7 @@
                                 <td width="5%" align="center">补货数量</td>
                                 <td width="5%" align="center">到货情况</td>
                             </tr>
-                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?> <?php if($vo["state"] == 2): ?>class="red"<?php endif; ?>>
                                 <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
                                 <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["goods_name"]); ?></td>

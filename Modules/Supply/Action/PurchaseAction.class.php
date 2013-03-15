@@ -223,6 +223,7 @@ class PurchaseAction extends CommonAction {
         }
         fclose($file);                                                  //关闭文件
         $result = $Purchase->addPurchaseGoods($repeat_arr,$id,$sum);
+
         if($result === TRUE){
             $this->success("数据导入成功！", __APP__ . "/Purchase-purchaseList-id-".$id."-sid-".$Pinfo['sid']);
         }else{

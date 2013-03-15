@@ -5,7 +5,7 @@
  *
  * @author maxiang
  */
-class PurchaseModel extends RelationModel{
+class PurchaseListModel extends RelationModel{
     protected $_validate = array(
         
     );

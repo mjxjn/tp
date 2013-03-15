@@ -13,6 +13,7 @@ table,thead,tbody,tfoot,tr,td{margin:0px}
 html{min-width:1002px;-webkit-text-size-adjust:none;}
 h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .w350{width: 350px;}
+.red{color: red;}
 
 /*字体 颜色*/
 .f14{font-size: 14px;}

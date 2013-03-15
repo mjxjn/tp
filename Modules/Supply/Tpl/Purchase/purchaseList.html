@@ -72,7 +72,7 @@
                                 <td width="5%" align="center">到货情况</td>
                             </tr>
                             <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
+                                <tr <eq name="mod" value="1">bg</eq> <if condition="$vo.state eq 2">class="red"</if>>
                                 <td width="5%"><input type="checkbox" name="" value="{$vo.id}" /></td>
                                 <td width="10%" align="center">{$vo.goods_code}</td>
                                 <td width="10%" align="center">{$vo.goods_name}</td>

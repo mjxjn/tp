@@ -77,7 +77,7 @@
                                 <td width="15%" align="center"><?php echo ($vo["cre_time"]); ?></td>
                                 <td width="10%" align="center"><?php if(($vo["state"]) == "1"): ?>未到货<?php else: ?>已到货<?php endif; ?></td>
                                 <td width="10%" align="center"><a href='__APP__/Purchase-upPurchase-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>'>导入</a></td>
-                                <td width="15%" align="center"><a href="__APP__/Purchase-purchaseList-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>">查看</a>&nbsp;&nbsp;<a href="#">导出</a>&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                                <td width="15%" align="center"><a href="__APP__/Purchase-purchaseList-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>">查看</a>&nbsp;&nbsp;<a href="__APP__/Purchase-excelPurchase-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>">导出</a>&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
                             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="9"><?php echo ($page); ?></td>

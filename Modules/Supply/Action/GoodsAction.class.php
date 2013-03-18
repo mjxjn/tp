@@ -119,6 +119,8 @@ class GoodsAction extends CommonAction {
         $date['id']=$id;
         $result = $GoodsGroup->where($date)->delete();
         if($result){
+            $GoodsList = D('GoodsList');
+            $GoodsList->where('gid='.$id)->delete();
             $this->success("数据删除成功！",__APP__ . "/Goods-orderList");
         }else{
             $this->error("数据删除失败！");

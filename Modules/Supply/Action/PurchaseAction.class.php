@@ -46,25 +46,27 @@ class PurchaseAction extends CommonAction {
                 if($pid = $Purchase->add($PurchaseData)){
                     
                     foreach ($info as $key => $value) {
-                        $PurchaseListData['pid']=$pid;
-                        $PurchaseListData['goods_code']=$value['goods_code'];
-                        $PurchaseListData['goods_name']=$value['goods_name'];
-                        $PurchaseListData['specification']=$value['specification'];
-                        $PurchaseListData['marque']=$value['marque'];
-                        $PurchaseListData['display']=$value['display'];
-                        $PurchaseListData['box_num']=$value['box_num'];
-                        $PurchaseListData['sid']=$value['sid'];
-                        $PurchaseListData['get_goods_num']=0;
-                        $PurchaseListData['goods_num']=$value['center'];
-                        $PurchaseListData['state']=1;
-                        $PurchaseListData['flag']=1;
-                        $PurchaseListData['cre_time']=  Mdate();
-                        $PurchaseListData['adminid']=  GetAdmin();
-                        
-                        if($PurchaseList->add($PurchaseListData)){
-                            
-                        }else{
-                            $this->error("添加采购单失败");
+                        if($value['center']>0){
+                            $PurchaseListData['pid']=$pid;
+                            $PurchaseListData['goods_code']=$value['goods_code'];
+                            $PurchaseListData['goods_name']=$value['goods_name'];
+                            $PurchaseListData['specification']=$value['specification'];
+                            $PurchaseListData['marque']=$value['marque'];
+                            $PurchaseListData['display']=$value['display'];
+                            $PurchaseListData['box_num']=$value['box_num'];
+                            $PurchaseListData['sid']=$value['sid'];
+                            $PurchaseListData['get_goods_num']=0;
+                            $PurchaseListData['goods_num']=$value['center'];
+                            $PurchaseListData['state']=1;
+                            $PurchaseListData['flag']=1;
+                            $PurchaseListData['cre_time']=  Mdate();
+                            $PurchaseListData['adminid']=  GetAdmin();
+
+                            if($PurchaseList->add($PurchaseListData)){
+
+                            }else{
+                                $this->error("添加采购单失败");
+                            }
                         }
                     }
                 }
@@ -82,24 +84,26 @@ class PurchaseAction extends CommonAction {
 
                 if($pid = $Purchase->add($PurchaseData)){
                     foreach ($info as $key => $value) {
-                        $PurchaseListData['pid']=$pid;
-                        $PurchaseListData['goods_code']=$value['goods_code'];
-                        $PurchaseListData['goods_name']=$value['goods_name'];
-                        $PurchaseListData['specification']=$value['specification'];
-                        $PurchaseListData['marque']=$value['marque'];
-                        $PurchaseListData['display']=$value['display'];
-                        $PurchaseListData['box_num']=$value['box_num'];
-                        $PurchaseListData['sid']=$value['sid'];
-                        $PurchaseListData['get_goods_num']=0;
-                        $PurchaseListData['goods_num']=$value['accord'];
-                        $PurchaseListData['state']=1;
-                        $PurchaseListData['flag']=1;
-                        $PurchaseListData['cre_time']=  Mdate();
-                        $PurchaseListData['adminid']=  GetAdmin();
-                        if($PurchaseList->add($PurchaseListData)){
-                            echo $key;
-                        }else{
-                            $this->error("生成采购单失败！");
+                        if($value['accord']>0){
+                            $PurchaseListData['pid']=$pid;
+                            $PurchaseListData['goods_code']=$value['goods_code'];
+                            $PurchaseListData['goods_name']=$value['goods_name'];
+                            $PurchaseListData['specification']=$value['specification'];
+                            $PurchaseListData['marque']=$value['marque'];
+                            $PurchaseListData['display']=$value['display'];
+                            $PurchaseListData['box_num']=$value['box_num'];
+                            $PurchaseListData['sid']=$value['sid'];
+                            $PurchaseListData['get_goods_num']=0;
+                            $PurchaseListData['goods_num']=$value['accord'];
+                            $PurchaseListData['state']=1;
+                            $PurchaseListData['flag']=1;
+                            $PurchaseListData['cre_time']=  Mdate();
+                            $PurchaseListData['adminid']=  GetAdmin();
+                            if($PurchaseList->add($PurchaseListData)){
+                                echo $key;
+                            }else{
+                                $this->error("生成采购单失败！");
+                            }
                         }
                     }
                 }
@@ -134,6 +138,8 @@ class PurchaseAction extends CommonAction {
         $Purchase = D('Purchase');
         $data['id']=$id;
         if($Purchase->where($data)->delete()){
+            $PurchaseList = D('PurchaseList');
+            $PurchaseList->where('pid='.$id)->delete();
             $this->success("删除采购单成功", __APP__ . "/Purchase-purchase");
         }else{
             $this->error("删除采购单失败！");

@@ -171,6 +171,8 @@ class SupplierAction extends CommonAction {
         $data['id']=$id;
         $data['sid']=$sid;
         if($Supplier->where($data)->delete()){
+            $SupplierGoods = D('SupplierGoods');
+            $SupplierGoods->where("sid='".$sid."'")->delete();
             $this->success("删除供货商成功", __APP__ . "/Supplier-supplier");
         }else{
             $this->error("删除供货商失败！");

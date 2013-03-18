@@ -7,6 +7,14 @@
  */
 class GoodsAction extends CommonAction {
 
+    public function index(){
+    	$this->display ();
+    }
+
+    public function main(){
+        $this->orderList();
+    }
+	
     public function orderList() {
         $GoodsGroup = D('GoodsGroup');
         import("ORG.Util.Page");// 导入分页类
@@ -109,7 +117,7 @@ class GoodsAction extends CommonAction {
         }
         $GoodsGroup = D('GoodsGroup');
         $date['id']=$id;
-        $result = $GoodsGroup->delete($date);
+        $result = $GoodsGroup->where($date)->delete();
         if($result){
             $this->success("数据删除成功！",__APP__ . "/Goods-orderList");
         }else{

@@ -10,37 +10,10 @@
         <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
     </head>
     <body>
-        <!-- Top Start { -->
-        <div class="head">
-            <div class="logo"><a href="__APP__/Index-index" class="txt_fff">婴格经贸有限公司管理系统</a></div>
-            <div class="system">
-                <ul>
-                    <li><a href="__APP__/Goods-orderList">商品智能补货系统</a></li>
-                    <li><a href="#">订单登记管理系统</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- } Top End -->
+        
         <!-- Body Start { -->
         <div class="body">
-            <!-- Left Start { -->
-            <div class="main_left">
-                <div class="admininfo">
-                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
-                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
-                    <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
-                </div>
-                <div class="system_menu">
-                    <h2>商品智能补货系统</h2>
-                    <ul>
-                        <li><a href="__APP__/Goods-orderList" class="hover">商品订单类表</a></li>
-                        <li><a href="__APP__/Goods-upGoodsList">上传商品清单</a></li>
-                        <li><a href="__APP__/Supplier-supplier">供货商管理</a></li>
-                        <li><a href="__APP__/Purchase-purchase">采购单管理</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- } Left End -->
+            
             <!-- Main Start { -->
             <div class="main">
                 <!-- Content Start { -->

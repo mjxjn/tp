@@ -6,6 +6,14 @@
  * @author Administrator
  */
 class SupplierAction extends CommonAction {
+    
+    public function index(){
+    	$this->display ();
+    }
+    
+    public function main(){
+        $this->supplier();
+    }
 
     public function supplier() {
         $Supplier = D('Supplier');
@@ -162,7 +170,7 @@ class SupplierAction extends CommonAction {
         $Supplier = D("Supplier");
         $data['id']=$id;
         $data['sid']=$sid;
-        if($Supplier->delete($data)){
+        if($Supplier->where($data)->delete()){
             $this->success("删除供货商成功", __APP__ . "/Supplier-supplier");
         }else{
             $this->error("删除供货商失败！");

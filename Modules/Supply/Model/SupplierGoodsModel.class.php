@@ -44,7 +44,7 @@ class SupplierGoodsModel extends RelationModel {
     }
     
     public function getSupplierSid($goods_code){
-        $info = $this->where('goods_code="'.$goods_code.'"')->field('sid')->find();
+        $info = $this->scope('normal')->where('goods_code="'.$goods_code.'"')->field('sid')->find();
         if(!empty($info)){
             return $info['sid'];
         }else{

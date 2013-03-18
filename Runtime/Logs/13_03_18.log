@@ -1,0 +1,177 @@
+[ 2013-03-18T09:15:36+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:15:36+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:15:36+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:45+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:45+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:45+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:46+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:46+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:46+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:18:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:16+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:16+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:16+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:20+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:21+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:21+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:21+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:22+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:22+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:23:22+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:23+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:23:23+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:23:23+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:24:02+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:24:02+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:24:02+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:24:03+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:05+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:05+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:05+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:06+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:06+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:06+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:08+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:08+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:08+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:46+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:46+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:46+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:47+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:47+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:48+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:48+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:25:49+08:00 ] ERR: (ThinkException) 无法加载模块:Public/left
+[ 2013-03-18T09:25:49+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:25:49+08:00 ] ERR: (ThinkException) 无法加载模块:Public/header
+[ 2013-03-18T09:27:51+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:27:51+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:27:51+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:11+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:11+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:11+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:12+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:12+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:12+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:13+08:00 ] ERR: (ThinkException) 无法加载模块:Public
+[ 2013-03-18T09:28:42+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Public/header.html]
+[ 2013-03-18T09:28:42+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Public/system_left.html]
+[ 2013-03-18T09:28:42+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:28:43+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Public/system_left.html]
+[ 2013-03-18T09:28:43+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Public/header.html]
+[ 2013-03-18T09:28:43+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:29:08+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:29:09+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:29:49+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:30:13+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:30:23+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T09:30:58+08:00 ] ERR: (ThinkException) 无法加载模块:index/main
+[ 2013-03-18T10:50:37+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Index/left.html]
+[ 2013-03-18T10:52:52+08:00 ] ERR: (ThinkException) 模板不存在[./Modules/Supply/Tpl/Index/left.html]
+[ 2013-03-18T11:25:03+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000653s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000766s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.005231s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000712s ]
+
+[ 2013-03-18T11:25:13+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierGoods
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001109s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001291s ]
+SQL: SHOW COLUMNS FROM `rs_supplier_goods` [ RunTime:0.007047s ]
+SQL: SELECT * FROM `rs_supplier_goods` WHERE ( `flag` = 1 ) AND ( id=44 ) LIMIT 1   [ RunTime:0.000422s ]
+
+[ 2013-03-18T11:38:10+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierGoods
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001309s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001550s ]
+SQL: SHOW COLUMNS FROM `rs_supplier_goods` [ RunTime:0.005856s ]
+SQL: SELECT * FROM `rs_supplier_goods` WHERE ( `flag` = 1 ) AND ( id=44 ) LIMIT 1   [ RunTime:0.000398s ]
+
+[ 2013-03-18T11:38:16+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000637s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000750s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.007587s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000449s ]
+
+[ 2013-03-18T11:38:22+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000684s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000804s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.006796s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000433s ]
+
+[ 2013-03-18T11:38:24+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001247s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.005084s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000427s ]
+
+[ 2013-03-18T11:38:25+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000819s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001042s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004466s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000415s ]
+
+[ 2013-03-18T11:38:27+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001837s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004545s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000427s ]
+
+[ 2013-03-18T11:38:28+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000945s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001118s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.004329s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000440s ]
+
+[ 2013-03-18T11:38:29+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001047s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001229s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.005817s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000424s ]
+

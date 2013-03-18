@@ -6,6 +6,14 @@
  * @author maxiang
  */
 class PurchaseAction extends CommonAction {
+    
+    public function index(){
+    	$this->display ();
+    }
+    
+    public function main(){
+        $this->purchase();
+    }
 
     public function creatPurchase() {
         $id = $this->_get('id');
@@ -15,7 +23,6 @@ class PurchaseAction extends CommonAction {
         
         $GoodsList = D('GoodsList');
         $sidList = $GoodsList->Distinct(true)->where('flag=1 and gid='.$id)->field('sid')->select();
-
         $Supplier = D('Supplier');
         
         $Purchase = D('Purchase');
@@ -35,8 +42,9 @@ class PurchaseAction extends CommonAction {
             $PurchaseData['flag']=  1;
             $PurchaseData['state']=  1;
             $PurchaseData['gid']=  $id;
-           
+          
                 if($pid = $Purchase->add($PurchaseData)){
+                    
                     foreach ($info as $key => $value) {
                         $PurchaseListData['pid']=$pid;
                         $PurchaseListData['goods_code']=$value['goods_code'];
@@ -89,7 +97,7 @@ class PurchaseAction extends CommonAction {
                         $PurchaseListData['cre_time']=  Mdate();
                         $PurchaseListData['adminid']=  GetAdmin();
                         if($PurchaseList->add($PurchaseListData)){
-                            
+                            echo $key;
                         }else{
                             $this->error("生成采购单失败！");
                         }
@@ -97,7 +105,6 @@ class PurchaseAction extends CommonAction {
                 }
             
         }
-        
         $GoodsGroup = D('GoodsGroup');
         $data['id']=$id;
         $data['flag']=2;
@@ -126,7 +133,7 @@ class PurchaseAction extends CommonAction {
         }
         $Purchase = D('Purchase');
         $data['id']=$id;
-        if($Purchase->delete($data)){
+        if($Purchase->where($data)->delete()){
             $this->success("删除采购单成功", __APP__ . "/Purchase-purchase");
         }else{
             $this->error("删除采购单失败！");
@@ -236,6 +243,10 @@ class PurchaseAction extends CommonAction {
         if(empty($id)&&empty($sid)){
             $this->error("参数错误！");
         }
+        $Supplier = D('Supplier');
+        $Sinfo = $Supplier->where('flag=1 and sid="'.$sid.'"')->find();
+        $PurchaseList = D('PurchaseList');
+        $Plist = $PurchaseList->where('pid='.$id." and sid='".$sid."'")->select();
         Vendor("PHPExcel.PHPExcel");
         // 创建一个处理对象实例   
         $objExcel = new PHPExcel();
@@ -261,22 +272,87 @@ class PurchaseAction extends CommonAction {
         $objActSheet->setTitle('婴格日新进货单');
         
         //合并单元格   
-        $objActSheet->mergeCells('A1:A2'); 
+        //$objActSheet->mergeCells('A1:B1'); 
+        $objActSheet->mergeCells('A1:F1');
+        $objActSheet->mergeCells('A2:B2');
+        $objActSheet->mergeCells('E2:F2');
+        $objActSheet->mergeCells('A3:C3');
+        $objActSheet->mergeCells('E3:F3');
+        $objActSheet->mergeCells('A4:B4');
+        $objActSheet->mergeCells('E4:F4');
+        $objActSheet->mergeCells('A5:C5');
+        $objActSheet->mergeCells('E5:F5');
+        $objActSheet->mergeCells('A6:F6');
+        
+        
         
         //$objActSheet->getColumnDimension('A1')->setWidth(200);
         //添加图片 
         /*$objDrawing = new PHPExcel_Worksheet_Drawing();   
         $objDrawing->setName('Logo');   
-        $objDrawing->setDescription('Image inserted by yingge');   
+        $objDrawing->setDescription('Logo');   
         $objDrawing->setPath('./Public/Images/LOGO.jpg'); 
-        $objDrawing->setHeight(90);   
+        $objDrawing->setHeight(90);
+        $objDrawing->setWidth(200);
         $objDrawing->setCoordinates('A1');   
         $objDrawing->setOffsetX(0);   
         $objDrawing->setRotation(15);   
         $objDrawing->getShadow()->setVisible(true);   
         $objDrawing->getShadow()->setDirection(36);   
-        $objDrawing->setWorksheet($objActSheet);  */
+        $objDrawing->setWorksheet($objActSheet); */
         
+        $objExcel->getActiveSheet()->setCellValue('A1', '进 货 订 单（ 日 新 ）'); 
+        $objStyleC1 = $objActSheet->getStyle('A1');
+        $objFontC1 = $objStyleC1->getFont();   
+        $objFontC1->setName('Courier New');   
+        $objFontC1->setSize(30);   
+        $objFontC1->setBold(true); 
+        
+        $objExcel->getActiveSheet()->setCellValue('A2', 'TO:'.$Sinfo['supplier']); 
+        $objExcel->getActiveSheet()->setCellValue('C2', '联系人:'.$Sinfo['name'].'手机:'.$Sinfo['phone']);
+        $objExcel->getActiveSheet()->setCellValue('D2', '电话:');
+        $objExcel->getActiveSheet()->setCellValue('E2', $Sinfo['tel']);
+        $objExcel->getActiveSheet()->setCellValue('A3', '公司地址:'.$Sinfo['address']);
+        $objExcel->getActiveSheet()->setCellValue('D3', '传真:');
+        $objExcel->getActiveSheet()->setCellValue('E3', $Sinfo['fax']);
+        
+        $objExcel->getActiveSheet()->setCellValue('A4', 'FROM:昆明婴格经贸有限公司'); 
+        $objExcel->getActiveSheet()->setCellValue('A4', 'FROM:昆明婴格经贸有限公司'); 
+        $objExcel->getActiveSheet()->setCellValue('C4', '联系人:手机:');
+        $objExcel->getActiveSheet()->setCellValue('D4', '电话:');
+        $objExcel->getActiveSheet()->setCellValue('E4', '0871-8082727');
+        
+        $objExcel->getActiveSheet()->setCellValue('A5', '公司地址：云南省昆明市西山区日新中路滇池境界9栋2楼');
+        $objExcel->getActiveSheet()->setCellValue('D5', '传真:');
+        $objExcel->getActiveSheet()->setCellValue('E5', '0871-8082727-115');
+        
+        $objExcel->getActiveSheet()->setCellValue('A6', '烦请订购以下商品！请送往日新店');
+        $objStyleC6 = $objActSheet->getStyle('A6');
+        $objFontC6 = $objStyleC6->getFont();   
+        $objFontC6->setName('Courier New');   
+        $objFontC6->setSize(20);   
+        $objFontC6->setBold(true); 
+        
+        
+        $objExcel->getActiveSheet()->setCellValue('A7', '序');
+        $objExcel->getActiveSheet()->setCellValue('B7', '条形码');
+        $objExcel->getActiveSheet()->setCellValue('C7', '商品全名');
+        $objExcel->getActiveSheet()->setCellValue('D7', '规格');
+        $objExcel->getActiveSheet()->setCellValue('E7', '型号');
+        $objExcel->getActiveSheet()->setCellValue('F7', '数量');
+        
+        $i=8;
+        foreach ($Plist as $key => $val){
+            $objExcel->getActiveSheet()->setCellValue('A'.$i, $key+1);
+            $objActSheet->setCellValueExplicit('B'.$i, $val['goods_code'],   
+                                    PHPExcel_Cell_DataType::TYPE_STRING);
+            //$objExcel->getActiveSheet()->setCellValue('B'.$i, $val['goods_code']);
+            $objExcel->getActiveSheet()->setCellValue('C'.$i, $val['goods_name']);
+            $objExcel->getActiveSheet()->setCellValue('D'.$i, $val['specification']);
+            $objExcel->getActiveSheet()->setCellValue('E'.$i, $val['marque']);
+            $objExcel->getActiveSheet()->setCellValue('F'.$i, $val['goods_num']);
+            $i++;
+        }
         // 为excel加图片
         /*$objDrawing = new PHPExcel_Worksheet_Drawing();
         $objDrawing->setName('Logo');

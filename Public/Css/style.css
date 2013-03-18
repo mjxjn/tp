@@ -66,9 +66,9 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 .system_info ul li span{color: #3d95e4; }
 
 /*右侧Main*/
-.main{float: left; position: absolute; left: 204px; height:100%; width: 100%;}
-.content{ overflow:auto; z-index:1; margin: 20px 18px; width: 82%; height: 100%; }
-.footer {position:fixed; _position:absolute; bottom:0px; width:100%; margin: 0 15px; border-top: 1px #ccc solid; line-height: 25px; height:25px;text-align:center; z-index:2; overflow:hidden;}
+.main{ height:100%; width: 100%;}
+.content{ overflow:auto; z-index:1; margin: 20px 18px; }
+.footer {position:fixed; _position:absolute; bottom:0px; width:100%; margin: 0 15px; border-top: 1px #ccc solid; line-height: 25px; height:25px;text-align:center; z-index:-2; overflow:hidden;}
 
 /*面包屑*/
 .blkBreadcrumbNav{display: inline-block; width: 100%; border-bottom: 1px #E3E3E3 solid; line-height: 24px; }
@@ -78,14 +78,13 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 /*表格*/
 .table_top{margin: 20px 0 0;padding: 0; background: url('../images/tabletop_bg.gif') 0 0 repeat-x; clear: both; height: 30px; line-height: 30px;}
 .table_list{padding-left: 7px; }
-.table_action{font-weight: normal; }
+.table_action{font-weight: normal;float: right;padding-right: 10px; }
 .table_action_ico{background: url('../images/all_ico.gif') 0 -58px no-repeat; display: inline-block; width: 15px; height: 15px; vertical-align: middle;}
 .table_menu{font-weight: bold;}
 .tablebox{border-width: 1px 1px 0 1px; border-style: solid; border-color: #ccc; margin-top: 15px; line-height: 35px;}
 .tablebox .bg{background: #f1f1f1;}
 .tablebox tr{border-bottom: 1px #ccc solid;}
-.tablebox td{padding-left: 10px;}
-table td{display: inline-table;}
+.tablebox td{padding-left: 10px;white-space:nowrap;}
 
 /*下载上传*/
 .download_csv{margin-top: 10px;}
@@ -97,12 +96,12 @@ table td{display: inline-table;}
 .upload_btn{clear: both; margin-left: 20px;background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center;margin-top: 25px; border: 0; cursor: pointer;}
 
 /*添加供货商*/
-.addsupplier{ position: fixed; top: 120px; left: 420px; width: 643px; display: none;}
+.addsupplier{ position: fixed; top: 120px; left: 320px; width: 643px; display: none;}
 .addsupplier_title{background: url('../images/supply_title.jpg') no-repeat;width: 643px; height: 35px;}
 .closesupplier{ display: block;width: 15px; height: 15px; float: right; margin: 9px 12px;}
 .supplytable{ background: #f1f1f1; width: 643px; border-width: 0 1px 1px; border-style: solid; border-color: #4582BC; }
 .supplytable tr{width: 642px;}
-.supplytable td{ margin: 7px 0 0 20px;}
+.supplytable td{ padding: 7px 0 0 20px;}
 .inputtxt{width: 250px;}
 .inputbtn{background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center; border: 0; cursor: pointer; margin-bottom: 20px; }
 

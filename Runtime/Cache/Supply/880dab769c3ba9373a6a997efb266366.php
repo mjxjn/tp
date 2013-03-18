@@ -10,37 +10,10 @@
         <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
     </head>
     <body>
-        <!-- Top Start { -->
-        <div class="head">
-            <div class="logo"><a href="__APP__/Index-index" class="txt_fff">婴格经贸有限公司管理系统</a></div>
-            <div class="system">
-                <ul>
-                    <li><a href="__APP__/Goods-orderList">商品智能补货系统</a></li>
-                    <li><a href="#">订单登记管理系统</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- } Top End -->
+        
         <!-- Body Start { -->
         <div class="body">
-            <!-- Left Start { -->
-            <div class="main_left">
-                <div class="admininfo">
-                    <p>欢迎您：<?php echo ($_SESSION['loginUserName']); ?></p>
-                    <p>隶属部门：<?php echo ($_SESSION['department']); ?></p>
-                    <p><a href="__APP__/Index-changePwd">修改密码</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Login-unlogin">退出系统</a></p>
-                </div>
-                <div class="system_menu">
-                    <h2>商品智能补货系统</h2>
-                    <ul>
-                        <li><a href="__APP__/Goods-orderList">商品订单类表</a></li>
-                        <li><a href="__APP__/Goods-upGoodsList">上传商品清单</a></li>
-                        <li><a href="__APP__/Supplier-supplier">供货商管理</a></li>
-                        <li><a href="__APP__/Purchase-purchase" class="hover">采购单管理</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- } Left End -->
+            
             <!-- Main Start { -->
             <div class="main">
                 <!-- Content Start { -->
@@ -52,7 +25,7 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="7">采购单据列表</td>
+                                <td colspan="8">采购单据列表</td>
                                 <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Goods-upGoodsList">批量添加商品</a>&nbsp;&nbsp;<span class="table_action_ico"></span><a href="__APP__/Goods-upGoodsList">添加供货商品</a></td>
                             </tr>
                         </thead>
@@ -72,7 +45,7 @@
                                 <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
                                 <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
                                 <td width="10%" align="center"><?php echo ($vo["Warehouse"]); ?></td>
-                                <td width="20%" align="center"><?php echo ($vo["supplier"]); ?></td>
+                                <td width="20%" align="center" title="<?php echo ($vo["supplier"]); ?>"><?php echo ($vo["supplier"]); ?></td>
                                 <td width="5%" align="center"><?php echo ($vo["goods_num"]); ?></td>
                                 <td width="15%" align="center"><?php echo ($vo["cre_time"]); ?></td>
                                 <td width="10%" align="center"><?php if(($vo["state"]) == "1"): ?>未到货<?php else: ?>已到货<?php endif; ?></td>

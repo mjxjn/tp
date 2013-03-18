@@ -1,9 +1,10 @@
 <?php
 class IndexAction extends CommonAction {
 
-    public function index(){
-        $admin = D('Admin');
-        $adminlist = $admin->scope('normal,latest,adminname')->select();
+    public function header(){
+        $this->display('Public:header');
+    }
+    public function system_left(){
         $info = array(
             '操作系统'=>PHP_OS,
             '运行环境'=>$_SERVER["SERVER_SOFTWARE"],
@@ -20,6 +21,18 @@ class IndexAction extends CommonAction {
             'magic_quotes_runtime'=>(1===get_magic_quotes_runtime())?'YES':'NO',
             );
         $this->assign('info',$info);
+        $this->display('Public:system_left');
+    }
+    public function left(){
+        $this->display ("Public:left");
+    }
+    public function index(){
+    	$this->display ();
+    }
+    public function main(){
+        $admin = D('Admin');
+        $adminlist = $admin->scope('normal,latest,adminname')->select();
+        
         $this->assign('adminlist',$adminlist);
 	$this->display();
     }

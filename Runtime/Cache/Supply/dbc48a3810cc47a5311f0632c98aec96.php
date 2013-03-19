@@ -7,13 +7,13 @@
         <meta name="copyright" content="Commerz" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
-        <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
+        <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
     </head>
     <body>
-        
+
         <!-- Body Start { -->
         <div class="body">
-            
+
             <!-- Main Start { -->
             <div class="main">
                 <!-- Content Start { -->
@@ -21,7 +21,7 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;商品订单列表</div>
                     <!-- } 路径导航 End -->
-                    
+
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                             <tr class="bg table_menu">
-                                <td width="10%"><input type="checkbox" name="" value="" /></td>
+                                <td width="10%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
                                 <td width="20%" align="center">单号</td>
                                 <td width="10%" align="center">商品数量</td>
                                 <td width="20%" align="center">上传日期</td>
@@ -39,13 +39,13 @@
                                 <td width="20%" align="center">操作</td>
                             </tr>
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
-                                <td width="10%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
-                                <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
-                                <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
-                                <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
-                                <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
-                                <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<?php if(($vo["flag"]) == "1"): ?><a href="__APP__/Purchase-creatPurchase-id-<?php echo ($vo["id"]); ?>">生成采购单</a><?php else: ?>已生成采购单<?php endif; ?>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
-                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    <td width="10%"><input type="checkbox" name="ids" id="chk<?php echo ($vo["id"]); ?>_Item" value="<?php echo ($vo["id"]); ?>" /></td>
+                                    <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
+                                    <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
+                                    <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
+                                    <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
+                                    <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<?php if(($vo["flag"]) == "1"): ?><a href="__APP__/Purchase-creatPurchase-id-<?php echo ($vo["id"]); ?>">生成采购单</a><?php else: ?>已生成采购单<?php endif; ?>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="6"><?php echo ($page); ?></td>
                             </tr>
@@ -62,15 +62,16 @@
         <!-- } Body End -->
     </body>
 </html>
-<SCRIPT LANGUAGE=javascript>
-
-function p_del() {
-var msg = "您真的确定要删除吗？\n\n请确认！";
-if (confirm(msg)==true){
-return true;
-}else{
-return false;
-}
-}
-
+<SCRIPT LANGUAGE='javascript'>
+                                        $("#chk_all").click(function(){
+     $("input[name='ids']").attr("checked",$(this).attr("checked"));
+});
+                                        function p_del() {
+                                            var msg = "您真的确定要删除吗？\n\n请确认！";
+                                            if (confirm(msg) == true) {
+                                                return true;
+                                            } else {
+                                                return false;
+                                            }
+                                        }
 </SCRIPT>

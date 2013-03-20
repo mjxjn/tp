@@ -107,3 +107,6 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal}
 
 /*补货*/
 .ok{display: block; background: url(../images/all_ico.gif) -72px -56px no-repeat; width: 20px; height: 20px;}
+
+/*删除按钮*/
+.alldel{background: url(../images/all_ico.gif) -68px -111px no-repeat; display: inline-block;width: 87px;height: 30px; line-height: 30px; text-align: center; border: 0; cursor: pointer; }

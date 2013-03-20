@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -25,7 +25,7 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="9">单号：{$info.oid}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传日期：{$info.cre_time}</td>
+                                <td colspan="9">单号：<?php echo ($info["oid"]); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传日期：<?php echo ($info["cre_time"]); ?></td>
                                 <td colspan="1" class="table_action">
                                     <form action="__APP__/Goods-search" name="form1" method="post">
                                         <input type="text" name="keyword" value="" class="search" />
@@ -48,23 +48,21 @@
                                 <td width="10%" align="center">总仓补货</td>
                                 <td width="10%" align="center">和谐补货</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
-                                <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-                                <td width="10%" align="center">{$vo.goods_code}</td>
-                                <td width="15%" align="center" title="{$vo.goods_name}">{$vo.goods_name}</td>
-                                <td width="10%" align="center">{$vo.specification}</td>
-                                <td width="10%" align="center" title="{$vo.marque}">{$vo.marque}</td>
-                                <td width="10%" align="center">{$vo.display}</td>
-                                <td width="10%" align="center">{$vo.box_num}</td>
-                                <td width="10%" align="center"><eq name="vo.supplier" value="">-<else />{$vo.supplier}</eq></td>
-                                <td width="10%" align="center">{$vo.center}</td>
-                                <td width="10%" align="center">{$vo.accord}</td>
-                            </tr>
-                            </volist>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                                <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
+                                <td width="15%" align="center" title="<?php echo ($vo["goods_name"]); ?>"><?php echo ($vo["goods_name"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["specification"]); ?></td>
+                                <td width="10%" align="center" title="<?php echo ($vo["marque"]); ?>"><?php echo ($vo["marque"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["display"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
+                                <td width="10%" align="center"><?php if(($vo["supplier"]) == ""): ?>-<?php else: echo ($vo["supplier"]); endif; ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["center"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["accord"]); ?></td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
-                                <td colspan="8">{$page}</td>
+                                <td colspan="8"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                             </form>

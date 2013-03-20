@@ -156,6 +156,7 @@ class SupplierAction extends CommonAction {
         $show = $Page->show();// 分页显示输出
         $list = $SupplierGoods->scope('normal')->where("sid='".$sid."'")->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
+        $this->assign('sid',$sid);
         $this->assign('info',$info);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
@@ -179,6 +180,27 @@ class SupplierAction extends CommonAction {
         }
     }
     
+    public function allDel(){
+        if ($_POST['ids']) {
+            $Supplier = D("Supplier");
+            $SupplierGoods = D('SupplierGoods');
+            foreach($_POST['ids'] as $id){
+                $re = explode("-",$id);
+                $date['id']=$re[0];
+                $date['sid']=$re[1];
+                $result = $Supplier->where($date)->delete();
+                if($result){
+                    $SupplierGoods->where('sid='.$re[1])->delete();
+                }else{
+                    $this->error("数据删除失败！");
+                }
+            }
+            $this->success("数据删除成功！",__APP__ . "/Supplier-supplier");
+        }else{
+            $this->error("请选择要删除的数据！");
+        }
+    }
+
     public function saveSupplierGoods(){
         $id = $this->_post('id');
         if(empty($id)){

@@ -21,7 +21,7 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;商品订单列表</div>
                     <!-- } 路径导航 End -->
-
+                    <form action="__APP__/Goods-allDel" method="post" name="form1" id="form1">
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
@@ -29,6 +29,7 @@
                                 <td class="table_action"><span class="table_action_ico"></span><a href="__APP__/Goods-upGoodsList">上传商品清单</a></td>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             <tr class="bg table_menu">
                                 <td width="10%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
@@ -38,9 +39,10 @@
                                 <td width="20%" align="center">操作人</td>
                                 <td width="20%" align="center">操作</td>
                             </tr>
+                            
                             <volist name="list" id="vo" mod="2">
                                 <tr <eq name="mod" value="1">bg</eq>>
-                                    <td width="10%"><input type="checkbox" name="ids" id="chk{$vo.id}_Item" value="{$vo.id}" /></td>
+                                    <td width="10%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
                                     <td width="20%" align="center">{$vo.oid}</td>
                                     <td width="10%" align="center">{$vo.goods_num}</td>
                                     <td width="20%" align="center">{$vo.cre_time}</td>
@@ -48,12 +50,14 @@
                                     <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-{$vo.id}">查看</a>&nbsp;&nbsp;<eq name="vo.flag" value="1"><a href="__APP__/Purchase-creatPurchase-id-{$vo.id}">生成采购单</a><else />已生成采购单</eq>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
                                 </tr>
                             </volist>
+                           
                             <tr>
-                                <td colspan="2"><a href="#" onclick="javascript:return all_del();">删除</a></td>
+                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
                                 <td colspan="4">{$page}</td>
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
                 <!-- } Content End -->
                 <!-- Footer Start { -->
@@ -66,9 +70,9 @@
     </body>
 </html>
 <SCRIPT LANGUAGE='javascript'>
-                                        $("#chk_all").click(function(){
-     $("input[name='ids']").attr("checked",$(this).attr("checked"));
-});
+                                        $("#chk_all").click(function() {
+                                            $("input[name='ids[]']").attr("checked", $(this).attr("checked"));
+                                        });
                                         function p_del() {
                                             var msg = "您真的确定要删除吗？\n\n请确认！";
                                             if (confirm(msg) == true) {
@@ -77,8 +81,12 @@
                                                 return false;
                                             }
                                         }
-                                        function all_del(){
-                                            
+                                        function all_del() {
+                                            var msg = "您真的确定要删除选中信息吗？\n\n请确认！";
+                                            if (confirm(msg) == true) {
+                                                document.form1.submit();
+                                            } else {
+                                                return false;
+                                            }
                                         }
 </SCRIPT>
- 

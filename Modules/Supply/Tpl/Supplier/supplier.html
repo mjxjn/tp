@@ -21,7 +21,7 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;供货商管理</div>
                     <!-- } 路径导航 End -->
-
+                    <form action="__APP__/Supplier-allDel" method="post" name="form2" id="form2">
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                             <tr class="bg table_menu">
-                                <td width="5%"><input type="checkbox" name="" value="" /></td>
+                                <td width="5%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
                                 <td width="10%" align="center">供货商编号</td>
                                 <td width="10%" align="center">供货商名称</td>
                                 <td width="20%" align="center">联系人</td>
@@ -43,7 +43,7 @@
                             </tr>
                             <volist name="list" id="vo" mod="2">
                                 <tr <eq name="mod" value="1">bg</eq>>
-                                    <td width="5%"><input type="checkbox" name="" value="{$vo.id}" /></td>
+                                    <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}-{$vo.sid}" /></td>
                                     <td width="10%" align="center">{$vo.sid}</td>
                                     <td width="10%" align="center" title="{$vo.supplier}">{$vo.supplier}</td>
                                     <td width="20%" align="center">{$vo.name}</td>
@@ -55,10 +55,12 @@
                                 </tr>
                             </volist>
                             <tr>
-                                <td colspan="9">{$page}</td>
+                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
+                                <td colspan="7">{$page}</td>
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
                 <!-- } Content End -->
                 <!-- AddSupplier Start { -->
@@ -194,4 +196,15 @@ $(document).ready(function(){
     $(".addsupplier").fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
   });
 });
+$("#chk_all").click(function() {
+                                            $("input[name='ids[]']").attr("checked", $(this).attr("checked"));
+                                        });
+                                        function all_del() {
+                                            var msg = "您真的确定要删除选中信息吗？\n\n请确认！";
+                                            if (confirm(msg) == true) {
+                                                document.form2.submit();
+                                            } else {
+                                                return false;
+                                            }
+                                        }
 </SCRIPT>

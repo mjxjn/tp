@@ -25,7 +25,16 @@ class PurchaseListModel extends RelationModel{
             'order' => 'state ASC',
         ),
     );
- 
+    
+    public function checkPurchaseState($pid){
+        $list = $this->where('pid='.$pid)->select();
+        foreach ($list as $val){
+            if($val['goods_num']>$val['get_goods_num']){
+                return "no";
+            }
+        }
+        return "yes";
+    }
 }
 
 ?>

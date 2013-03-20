@@ -1,0 +1,8 @@
+[ 2013-03-20T11:52:54+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: YES)
+[ 2013-03-20T15:56:28+08:00 ] 127.0.0.1 /index.php?s=/Supplier-AjaxGetSupplierInfo
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000746s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000863s ]
+SQL: SHOW COLUMNS FROM `rs_supplier` [ RunTime:0.008786s ]
+SQL: SELECT * FROM `rs_supplier` WHERE ( `flag` = 1 ) AND ( id=4 ) LIMIT 1   [ RunTime:0.000516s ]
+

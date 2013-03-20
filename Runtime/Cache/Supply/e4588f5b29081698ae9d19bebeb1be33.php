@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -25,8 +25,8 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="7">供货商:{$info['supplier']}</td>
-                                <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier-sid-{$info['sid']}">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
+                                <td colspan="7">供货商:<?php echo ($info['supplier']); ?></td>
+                                <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier-sid-<?php echo ($info['sid']); ?>">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,21 +40,19 @@
                                 <td width="10%" align="center">装箱数量</td>
                                 <td width="15%" align="center">操作</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq>>
-                                    <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-                                    <td width="10%" align="center">{$vo.sid}</td>
-                                    <td width="20%" align="center">{$vo.goods_code}</td>
-                                    <td width="20%" align="center" title="{$vo.goods_name}">{$vo.goods_name}</td>
-                                    <td width="10%" align="center">{$vo.specification}</td>
-                                    <td width="10%" align="center" title="{$vo.marque}">{$vo.marque}</td>
-                                    <td width="10%" align="center">{$vo.box_num}</td>
-                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplierGoods('{$vo.id}');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoodsDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a></td>
-                                </tr>
-                            </volist>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
+                                    <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
+                                    <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
+                                    <td width="20%" align="center"><?php echo ($vo["goods_code"]); ?></td>
+                                    <td width="20%" align="center" title="<?php echo ($vo["goods_name"]); ?>"><?php echo ($vo["goods_name"]); ?></td>
+                                    <td width="10%" align="center"><?php echo ($vo["specification"]); ?></td>
+                                    <td width="10%" align="center" title="<?php echo ($vo["marque"]); ?>"><?php echo ($vo["marque"]); ?></td>
+                                    <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
+                                    <td width="15%" align="center"><a href="#" onclick="javascript:editSupplierGoods('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /><input type="hidden" name="sid" value="{$sid}" /></td>
-                                <td colspan="6">{$page}</td>
+                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /><input type="hidden" name="sid" value="<?php echo ($sid); ?>" /></td>
+                                <td colspan="6"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

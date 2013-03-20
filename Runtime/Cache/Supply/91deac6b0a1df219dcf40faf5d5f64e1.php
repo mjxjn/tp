@@ -21,7 +21,7 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;供货商管理</div>
                     <!-- } 路径导航 End -->
-
+                    <form action="__APP__/Supplier-allDel" method="post" name="form2" id="form2">
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
@@ -31,7 +31,7 @@
                         </thead>
                         <tbody>
                             <tr class="bg table_menu">
-                                <td width="5%"><input type="checkbox" name="" value="" /></td>
+                                <td width="5%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
                                 <td width="10%" align="center">供货商编号</td>
                                 <td width="10%" align="center">供货商名称</td>
                                 <td width="20%" align="center">联系人</td>
@@ -42,7 +42,7 @@
                                 <td width="15%" align="center">操作</td>
                             </tr>
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
-                                    <td width="5%"><input type="checkbox" name="" value="<?php echo ($vo["id"]); ?>" /></td>
+                                    <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>-<?php echo ($vo["sid"]); ?>" /></td>
                                     <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
                                     <td width="10%" align="center" title="<?php echo ($vo["supplier"]); ?>"><?php echo ($vo["supplier"]); ?></td>
                                     <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
@@ -53,10 +53,12 @@
                                     <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoods-sid-<?php echo ($vo["sid"]); ?>">商品</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierDel-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>" onclick="javascript:return p_del();">删除</a></td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
-                                <td colspan="9"><?php echo ($page); ?></td>
+                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
+                                <td colspan="7"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
                 <!-- } Content End -->
                 <!-- AddSupplier Start { -->
@@ -192,4 +194,15 @@ $(document).ready(function(){
     $(".addsupplier").fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
   });
 });
+$("#chk_all").click(function() {
+                                            $("input[name='ids[]']").attr("checked", $(this).attr("checked"));
+                                        });
+                                        function all_del() {
+                                            var msg = "您真的确定要删除选中信息吗？\n\n请确认！";
+                                            if (confirm(msg) == true) {
+                                                document.form2.submit();
+                                            } else {
+                                                return false;
+                                            }
+                                        }
 </SCRIPT>

@@ -146,6 +146,60 @@ class PurchaseAction extends CommonAction {
         }
     }
     
+    public function allDel(){
+        if ($_POST['ids']) {
+            $Purchase = D('Purchase');
+            $PurchaseList = D('PurchaseList');
+            foreach($_POST['ids'] as $id){
+                $date['id']=$id;
+                $result = $Purchase->where($date)->delete();
+                if($result){
+                    $PurchaseList->where('pid='.$id)->delete();
+                }else{
+                    $this->error("数据删除失败！");
+                }
+            }
+            $this->success("数据删除成功！",__APP__ . "/Purchase-purchase");
+        }else{
+            $this->error("请选择要删除的数据！");
+        }
+    }
+    
+    public function allListDel(){
+        if ($_POST['ids']) {
+            $Purchase = D('Purchase');
+            $PurchaseList = D('PurchaseList');
+            foreach($_POST['ids'] as $key => $id){
+                if($key==0){
+                    $info = $PurchaseList->where('id='.$id)->find();
+                }
+                $date['id']=$id;
+                $result = $PurchaseList->where($date)->delete();
+                if($result){
+                }else{
+                    $this->error("数据删除失败！");
+                }
+            }
+            $list = $PurchaseList->where('pid='.$info['pid'])->field('goods_num')->select();
+            foreach ($list as $val){
+                $count += $val['goods_num'];
+            }
+            $flag = $PurchaseList->checkPurchaseState($info['pid']);
+            $data['id']=$info['pid'];
+            $data['goods_num']=$count;
+            if($flag=='yes'){
+                $data['state']=2;
+            }else{
+                $data['state']=1;
+            }
+            $Purchase->save($data);
+            
+            $this->success("数据删除成功！",__APP__ . "/Purchase-purchase");
+        }else{
+            $this->error("请选择要删除的数据！");
+        }
+    }
+
     public function purchaseList(){
         $id = $this->_get('id');
         $sid = $this->_get('sid');
@@ -212,8 +266,7 @@ class PurchaseAction extends CommonAction {
         }
         setlocale(LC_ALL, 'en_US.UTF-8');    //读之前 防止中文乱码
         $file = fopen('./Public/Uploads/'.$info[0]['savename'],"r"); //只读形式打开文件
-        $row = 0;              //保存重复的行数   
-        $sum = 0;
+        $row = 0;              //保存重复的行数
         $repeat_arr    = array();                                  //保存插入tp_server的ser_ids
         while ($data = fgetcsv($file, 1001, ',')) {     //开始读取csv文件
             $row++;
@@ -231,10 +284,9 @@ class PurchaseAction extends CommonAction {
             }elseif($Pinfo['Warehouse']=='和谐店'){
                 $repeat_arr[$row]['get_goods_num'] = iconv("GBK","UTF-8",trim($data[7]));
             }
-            $sum += $repeat_arr[$row]['b_num'];
         }
         fclose($file);                                                  //关闭文件
-        $result = $Purchase->addPurchaseGoods($repeat_arr,$id,$sum);
+        $result = $Purchase->addPurchaseGoods($repeat_arr,$id);
 
         if($result === TRUE){
             $this->success("数据导入成功！", __APP__ . "/Purchase-purchaseList-id-".$id."-sid-".$Pinfo['sid']);

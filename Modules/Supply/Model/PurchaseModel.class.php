@@ -38,15 +38,21 @@ class PurchaseModel extends RelationModel {
         ),
     );
 
-    public function addPurchaseGoods($rows, $id, $sum) {
-        $Pinfo = $this->scope('normal')->where('id=' . $id)->find();
-        $data['id'] = $id;
-        if ($Pinfo['goods_num'] >= $sum) {
+    public function addPurchaseGoods($rows, $id) {
+        //$Pinfo = $this->scope('normal')->where('id=' . $id)->find();
+        /*if ($Pinfo['goods_num'] >= $sum) {
+            $data['state'] = 2;
+            $data['up_time'] = Mdate();
+            $this->save($data);
+        }*/
+        $PurchaseList = D('PurchaseList');
+        $flag = $PurchaseList->checkPurchaseState($id);
+        if($flag=='yes'){
+            $data['id'] = $id;
             $data['state'] = 2;
             $data['up_time'] = Mdate();
             $this->save($data);
         }
-        $PurchaseList = D('PurchaseList');
         foreach ($rows as $value) {
             $result = $PurchaseList->scope('normal')->where('goods_code = "' . $value['goods_code'] . '" and pid=' . $id)->field('id')->find();
             if (empty($result)) {

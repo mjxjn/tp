@@ -126,6 +126,50 @@ class GoodsAction extends CommonAction {
             $this->error("数据删除失败！");
         }
     }
+    
+    public function allDel(){
+        if ($_POST['ids']) {
+            $GoodsGroup = D('GoodsGroup');
+            $GoodsList = D('GoodsList');
+            foreach($_POST['ids'] as $id){
+                $date['id']=$id;
+                $result = $GoodsGroup->where($date)->delete();
+                if($result){
+                    $GoodsList->where('gid='.$id)->delete();
+                }else{
+                    $this->error("数据删除失败！");
+                }
+            }
+            $this->success("数据删除成功！",__APP__ . "/Goods-orderList");
+        }else{
+            $this->error("请选择要删除的数据！");
+        }
+    }
+    
+    public function allGoodsDel(){
+        if ($_POST['ids']) {
+            $GoodsGroup = D('GoodsGroup');
+            $GoodsList = D('GoodsList');
+            foreach ($_POST['ids'] as $key => $id) {
+                if($key==0){
+                    $info = $GoodsList->where('id=' . $id)->find();
+                }
+                $result = $GoodsList->where('id=' . $id)->delete();
+                if ($result) {
+                    
+                } else {
+                    $this->error("数据删除失败！");
+                }
+            }
+            $count = $GoodsList->where('gid='.$info['gid'])->count();
+            $data['id']=$info['gid'];
+            $data['goods_num']=$count;
+            $GoodsGroup->save($data);
+            $this->success("数据删除成功！",__APP__ . "/Goods-orderList");
+        }else{
+            $this->error("请选择要删除的数据！");
+        }
+    }
 }
 
 ?>

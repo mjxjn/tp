@@ -113,7 +113,7 @@ class SupplierAction extends CommonAction {
     public function AjaxGetSupplierInfo(){
         $id = $this->_post('id');
         if(empty($id)){
-            $this->error("参数错误！");
+            $return['state']=1;
         }
         $Supplier = D("Supplier");
         $info = $Supplier->scope('normal')->where('id='.$id)->find();

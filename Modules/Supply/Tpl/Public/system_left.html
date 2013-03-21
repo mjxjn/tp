@@ -11,7 +11,7 @@
                     <h2>系统全局管理</h2>
                     <ul id="left_menu">
                         <li><a href="__APP__/Index-main" class="hover" target='win'>系统首页</a></li>
-                        <li><a href="">管理团队设置</a></li>
+                        <li><a href="__APP__/Admin-adminList" target="win">管理团队设置</a></li>
                         <li><a href="">数据库管理</a></li>
                     </ul>
                 </div>

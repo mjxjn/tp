@@ -13,7 +13,7 @@
         <div class="loginbg">
             <form action="__APP__/Login-login" method="post" name="form" id="form">
                 <div class="login_name"><input type="text" name="name" value="" class="login_input"/><div class="name_tip">用户名：</div></div>
-                <div class="login_pwd"><input type="password" name="pwd" value="" class="login_input"/><div class="pwd_tip">密码：</div></div>
+                <div class="login_pwd"><input type="password" name="password" value="" class="login_input"/><div class="pwd_tip">密码：</div></div>
                 <div class="login_btn"><input type="submit" name="submit" value=" " class="login_sub"/></div>
             </form>
         </div>

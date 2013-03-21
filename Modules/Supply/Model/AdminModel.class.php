@@ -2,13 +2,13 @@
 class AdminModel extends RelationModel{
     protected $_validate = array(
         array('name','require','用户名必须！'),
-        array('pwd','require','密码必须！'),
+//        array('password','require','密码必须！'),
         array('name','','用户名已经存在！',0,'unique',1),// 在新增的时候验证name字段是否唯一
-        array('repwd','pwd','确认密码不正确',0,'confirm'),
-        array('pwd','/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{5,22}$/i','密码格式不正确',0,'regex'),
+        array('repwd','password','确认密码不正确',0,'confirm'),
+        array('pwd','/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,12}$/i','密码格式不正确',0,'regex'),
 //        array('name','/^[\u4e00-\u9fa5]+$/i','用户名格式不正确',0,'regex'),
         array('name','checkName','帐号错误！',1,'callback',4),  // 只在登录时候验证
-        array('pwd','checkPwd','密码错误！',1,'callback',4), // 只在登录时候验证
+        array('password','checkPwd','密码错误！',1,'callback',4), // 只在登录时候验证
     );
     protected $_auto = array(
         array('password','',2,'ignore'),
@@ -54,8 +54,8 @@ class AdminModel extends RelationModel{
      * @return boolean
      */
     private function checkPwdRules(){
-        $pwd = isset($_POST['pwd'])?$_POST['pwd']:'';
-        if(preg_match('/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/i', $pwd)) {  
+        $pwd = isset($_POST['password'])?$_POST['password']:'';
+        if(preg_match('/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,12}$/i', $pwd)) {  
             return TRUE;
         }else{
             return FALSE;
@@ -85,7 +85,7 @@ class AdminModel extends RelationModel{
     }
     
     protected function checkPwd() {
-        $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+        $pwd = isset($_POST['password']) ? $_POST['password'] : '';
         $name = trim($_POST['name']);
         $result = $this->scope('normal')->where("password='" . $this->pwdHash($pwd) . "' and name='" . $name . "'")->find();
         if ($result) {
@@ -96,8 +96,8 @@ class AdminModel extends RelationModel{
     }
 
     protected function pwdHash() {
-        if(isset($_POST['pwd'])) {
-            return md5($_POST['pwd']);
+        if(isset($_POST['password'])) {
+            return md5($_POST['password']);
         }else{
             return false;
         }

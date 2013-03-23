@@ -11,7 +11,7 @@ class AdminAction extends CommonAction {
         $Admin = D("Admin");
         import("ORG.Util.Page");// 导入分页类
 	$count = $Admin->scope('normal')->count();// 查询满足要求的总记录数
-	$Page = new Page($count,'13');// 实例化分页类 传入总记录数和每页显示的记录数
+	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $Admin->relation(true)->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);

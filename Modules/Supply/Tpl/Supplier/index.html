@@ -5,7 +5,7 @@
 <title>婴格管理系统</title>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/system.css" />
-<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
 </head>
 <frameset rows="45,*" border="0" name="fullname">
     <frame src="__APP__/Index-header" scrolling="no" noresize="noresize">

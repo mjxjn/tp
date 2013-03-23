@@ -8,7 +8,7 @@ return array(
     'DB_PORT'                   =>  '3306',
     'DB_PREFIX'                 =>  'rs_',
     
-    'USER_AUTH_ON'              =>  true, //设置权限验证
+    'USER_AUTH_ON'              =>  false, //设置权限验证
     'USER_AUTH_TYPE'            =>  2,		// 默认认证类型 1 登录认证 2 实时认证
     'USER_AUTH_KEY'             =>  'user',
     'ADMIN_AUTH_KEY'		=>  'administrator',

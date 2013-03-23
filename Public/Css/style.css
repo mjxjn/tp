@@ -1,6 +1,6 @@
 /*通用*/
 html,body,form,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,em,address,a,input,textarea,span,strong,img,i{margin:0px;padding:0px}
-body{font-size:12px;line-height:180%;color:#636363;font-family:Arial,\5B8B\4F53; overflow: hidden; height: 100%;max-height: 100%; }
+body{font-size:12px;line-height:180%;color:#636363;font-family:Arial,\5B8B\4F53; overflow-x: hidden; height: 100%;max-height: 100%; }
 ul,ol,dl{list-style:none}
 input,textarea,select,button{font-size:12px}
 img{border:none}

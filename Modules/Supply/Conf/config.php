@@ -4,11 +4,11 @@ return array(
     'DB_HOST'                   =>  'localhost',
     'DB_NAME'                   =>  'reshop',
     'DB_USER'                   =>  'root',
-    'DB_PWD'                    =>  '236236',
+    'DB_PWD'                    =>  '',
     'DB_PORT'                   =>  '3306',
     'DB_PREFIX'                 =>  'rs_',
     
-    'USER_AUTH_ON'              =>  false, //设置权限验证
+    'USER_AUTH_ON'              =>  TRUE, //设置权限验证
     'USER_AUTH_TYPE'            =>  2,		// 默认认证类型 1 登录认证 2 实时认证
     'USER_AUTH_KEY'             =>  'user',
     'ADMIN_AUTH_KEY'		=>  'administrator',

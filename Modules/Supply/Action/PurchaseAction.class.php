@@ -30,8 +30,8 @@ class PurchaseAction extends CommonAction {
         foreach ($sidList as $val){
             $supplierInfo = $Supplier->where('sid="'.$val['sid'].'"')->field('supplier')->find();
             $info = $GoodsList->where('gid = '.$id. ' and sid="'.$val['sid'].'"')->select();
-            $center_sum = $GoodsList->where('gid = '.$id. ' and sid="'.$val['sid'].'"')->sum('center');
-            $accord_sum = $GoodsList->where('gid = '.$id. ' and sid="'.$val['sid'].'"')->sum('accord');
+            $center_sum = $GoodsList->where('center>0 and gid = '.$id. ' and sid="'.$val['sid'].'"')->count();
+            $accord_sum = $GoodsList->where('accord>0 and gid = '.$id. ' and sid="'.$val['sid'].'"')->count();
             
             $PurchaseData['sid']=$val['sid'];
             $PurchaseData['Warehouse']='总仓';
@@ -122,7 +122,7 @@ class PurchaseAction extends CommonAction {
         $Purchase = D('Purchase');
         import("ORG.Util.Page");// 导入分页类
 	$count = $Purchase->scope('normal,latest')->count();// 查询满足要求的总记录数
-	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+	$Page = new Page($count,'3');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $Purchase->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
@@ -203,6 +203,7 @@ class PurchaseAction extends CommonAction {
     public function purchaseList(){
         $id = $this->_get('id');
         $sid = $this->_get('sid');
+        $state = $this->_get('state');
         if(empty($id)&&empty($sid)){
             $this->error("参数错误！");
         }
@@ -211,16 +212,55 @@ class PurchaseAction extends CommonAction {
         $Purchase = D('Purchase');
         $Pinfo = $Purchase->scope('normal')->where('id='.$id)->field('Warehouse,cre_time')->find();
         $PurchaseList = D('PurchaseList');
+        $allcount = $PurchaseList->scope('normal,latest')->where('pid='.$id)->count();
         import("ORG.Util.Page");// 导入分页类
+        if(empty($state)){
 	$count = $PurchaseList->scope('normal,latest')->where('pid='.$id)->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $PurchaseList->scope('normal,latest')->where('pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+        }else{
+            switch ($state) {
+                case 1://全部导航商品
+                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num=goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+                    $show = $Page->show();// 分页显示输出
+                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num=goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    break;
+                case 2://未完全到货商品
+                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num<goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+                    $show = $Page->show();// 分页显示输出
+                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num<goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    break;
+                case 3://超出到货数量商品
+                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num>goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+                    $show = $Page->show();// 分页显示输出
+                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num>goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    break;
+                case 4://未采购商品
+                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num=0 and pid='.$id)->count();// 查询满足要求的总记录数
+                    $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+                    $show = $Page->show();// 分页显示输出
+                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num=0 and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    break;
+                default:
+                    break;
+            }
+        }
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
+        $this->assign('count',$allcount);//采购数量
+        $getcount = $PurchaseList->scope('normal,latest')->where('get_goods_num > 0 and pid='.$id)->count();
+        $this->assign('getcount',$getcount);//实际到货商品数量
+        $getbai = number_format($getcount/$count,2)*100;
+        $this->assign('getbai',$getbai);//到货率
         $this->assign('supplier',$Sinfo['supplier']);
         $this->assign('cre_time',$Pinfo['cre_time']);
         $this->assign('Warehouse',$Pinfo['Warehouse']);
+        $this->assign('id',$id);
+        $this->assign('sid',$sid);
         $this->display();
     }
     

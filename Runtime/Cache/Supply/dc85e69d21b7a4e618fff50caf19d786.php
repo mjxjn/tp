@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/system.css" />
-<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
 </head>
 <body>
 <!-- Main Start { -->

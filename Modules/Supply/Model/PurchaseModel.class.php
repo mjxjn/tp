@@ -46,13 +46,13 @@ class PurchaseModel extends RelationModel {
             $this->save($data);
         }*/
         $PurchaseList = D('PurchaseList');
-        $flag = $PurchaseList->checkPurchaseState($id);
-        if($flag=='yes'){
+        //$flag = $PurchaseList->checkPurchaseState($id);
+        //if($flag=='yes'){
             $data['id'] = $id;
             $data['state'] = 2;
             $data['up_time'] = Mdate();
             $this->save($data);
-        }
+       // }
         foreach ($rows as $value) {
             $result = $PurchaseList->scope('normal')->where('goods_code = "' . $value['goods_code'] . '" and pid=' . $id)->field('id')->find();
             if (empty($result)) {

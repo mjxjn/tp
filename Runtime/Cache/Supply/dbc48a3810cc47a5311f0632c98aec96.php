@@ -7,7 +7,7 @@
         <meta name="copyright" content="Commerz" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
-        <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.core.js"></script>
     </head>
     <body>
 
@@ -51,7 +51,7 @@
                            
                             <tr>
                                 <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
-                                <td colspan="4"><?php echo ($page); ?></td>
+                                <td colspan="4" align="right"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

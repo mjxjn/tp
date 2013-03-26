@@ -25,6 +25,10 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
+                                <td colspan="5">采购数量：{$count}&nbsp;&nbsp;实际到货商品数量：{$getcount}&nbsp;&nbsp;到货率：{$getbai}%</td>
+                                <td colspan="5" align="right"><a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}">全部商品列表</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-1">全部到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-2">未完全到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-3">超出到货数量商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-4">未采购商品</a></td>
+                            </tr>
+                            <tr class="table_top">
                                 <td colspan="10">仓库：{$Warehouse}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供货商：{$supplier}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成日期：{$cre_time}</td>
 <!--                                <td class="table_action" colspan="3">
                                     
@@ -68,7 +72,7 @@
                             </volist>
                             <tr>
                                 <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
-                                <td colspan="8">{$page}</td>
+                                <td colspan="8" align="right" class="manu">{$page}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -31,13 +31,25 @@ class SupplierGoodsModel extends RelationModel {
     
     public function addSupplierGoods($rows) {
         foreach ($rows as $val) {
-            $val['adminid'] = GetAdmin();
-            $val['flag'] = 1;
-            $val['cre_time'] = Mdate();
-            if ($this->add($val)) {
-                //return TRUE;
-            } else {
-                return FALSE;
+            $result = $this->where('goods_code='.$val['goods_code'].' and sid="'.$val['sid'].'"')->find();
+            if(empty($result)){
+                $val['adminid'] = GetAdmin();
+                $val['flag'] = 1;
+                $val['cre_time'] = Mdate();
+                if ($this->add($val)) {
+                    //return TRUE;
+                } else {
+                    return FALSE;
+                }
+            }else{
+                $val['id']=$result['id'];
+                $val['up_time'] = Mdate();
+                $val['adminid'] = GetAdmin();
+                if ($this->save($val)) {
+                    //return TRUE;
+                } else {
+                    return FALSE;
+                }
             }
         }
         return TRUE;

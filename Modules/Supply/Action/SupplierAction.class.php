@@ -217,6 +217,18 @@ class SupplierAction extends CommonAction {
             $this->error($SupplierGoods->getError());
         }
     }
+    
+    public function getSupplierList(){
+        $keyword = $this->_post('keyword');
+        $Supplier = D("Supplier");
+        $msg = $Supplier->where("supplier like '%".$keyword."%' or sid like '%".$keyword."%'")->select();
+        if(empty($msg)){
+            $msg['state']=0;
+        }else{
+            $msg['state']=1;
+        }
+        echo json_encode($msg);
+    }
 }
 
 ?>

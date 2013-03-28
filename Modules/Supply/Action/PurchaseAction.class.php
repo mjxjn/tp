@@ -130,6 +130,19 @@ class PurchaseAction extends CommonAction {
         $this->display();
     }
     
+    public function findSupplier(){
+        $sid = $this->_post('sid');
+        $Purchase = D('Purchase');
+        import("ORG.Util.Page");// 导入分页类
+	$count = $Purchase->scope('normal,latest')->where('sid="'.$sid.'"')->count();// 查询满足要求的总记录数
+	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+        $list = $Purchase->scope('normal,latest')->where('sid="'.$sid.'"')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display('Purchase:purchase');
+    }
+
     public function purchaseDel(){
         $id = $this->_get('id');
         if(empty($id)){
@@ -212,38 +225,38 @@ class PurchaseAction extends CommonAction {
         $Purchase = D('Purchase');
         $Pinfo = $Purchase->scope('normal')->where('id='.$id)->field('Warehouse,cre_time')->find();
         $PurchaseList = D('PurchaseList');
-        $allcount = $PurchaseList->scope('normal,latest')->where('pid='.$id)->count();
+        $allcount = $PurchaseList->scope('normal,latest')->where('goods_num > 0')->where('pid='.$id)->count();
         import("ORG.Util.Page");// 导入分页类
         if(empty($state)){
-	$count = $PurchaseList->scope('normal,latest')->where('pid='.$id)->count();// 查询满足要求的总记录数
+	$count = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and pid='.$id)->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
-        $list = $PurchaseList->scope('normal,latest')->where('pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
         }else{
             switch ($state) {
                 case 1://全部导航商品
-                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num=goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $count = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num=goods_num and pid='.$id)->count();// 查询满足要求的总记录数
                     $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
                     $show = $Page->show();// 分页显示输出
-                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num=goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    $list = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num=goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
                     break;
                 case 2://未完全到货商品
-                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num<goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $count = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num<goods_num and pid='.$id)->count();// 查询满足要求的总记录数
                     $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
                     $show = $Page->show();// 分页显示输出
-                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num<goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    $list = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num<goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
                     break;
                 case 3://超出到货数量商品
-                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num>goods_num and pid='.$id)->count();// 查询满足要求的总记录数
+                    $count = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num>goods_num and pid='.$id)->count();// 查询满足要求的总记录数
                     $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
                     $show = $Page->show();// 分页显示输出
                     $list = $PurchaseList->scope('normal,latest')->where('get_goods_num>goods_num and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
                     break;
                 case 4://未采购商品
-                    $count = $PurchaseList->scope('normal,latest')->where('get_goods_num=0 and pid='.$id)->count();// 查询满足要求的总记录数
+                    $count = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num=0 and pid='.$id)->count();// 查询满足要求的总记录数
                     $Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
                     $show = $Page->show();// 分页显示输出
-                    $list = $PurchaseList->scope('normal,latest')->where('get_goods_num=0 and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
+                    $list = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num=0 and pid='.$id)->limit($Page->firstRow.','.$Page->listRows)->select();
                     break;
                 default:
                     break;
@@ -252,7 +265,7 @@ class PurchaseAction extends CommonAction {
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('count',$allcount);//采购数量
-        $getcount = $PurchaseList->scope('normal,latest')->where('get_goods_num > 0 and pid='.$id)->count();
+        $getcount = $PurchaseList->scope('normal,latest')->where('goods_num > 0 and get_goods_num > 0 and pid='.$id)->count();
         $this->assign('getcount',$getcount);//实际到货商品数量
         $getbai = number_format($getcount/$count,2)*100;
         $this->assign('getbai',$getbai);//到货率
@@ -345,6 +358,8 @@ class PurchaseAction extends CommonAction {
         $Sinfo = $Supplier->where('flag=1 and sid="'.$sid.'"')->find();
         $Purchase = D('Purchase');
         $Pinfo = $Purchase->where('id='.$id)->field('Warehouse')->find();
+        $goodsGroup = D('goodsGroup');
+        $Ginfo = $goodsGroup->where('id='.$Pinfo['gid'])->field('oid')->find();
         $PurchaseList = D('PurchaseList');
         $Plist = $PurchaseList->where('pid='.$id." and sid='".$sid."'")->select();
         Vendor("PHPExcel.PHPExcel");
@@ -420,8 +435,8 @@ class PurchaseAction extends CommonAction {
         $objExcel->getActiveSheet()->setCellValue('D2', '电话:');
         $objExcel->getActiveSheet()->setCellValue('E2', $Sinfo['tel']);
         $objExcel->getActiveSheet()->setCellValue('A3', '公司地址:'.$Sinfo['address']);
-        $objExcel->getActiveSheet()->setCellValue('D3', '传真:');
-        $objExcel->getActiveSheet()->setCellValue('E3', $Sinfo['fax']);
+        $objExcel->getActiveSheet()->setCellValue('D3', '单号:');
+        $objExcel->getActiveSheet()->setCellValue('E3', $Ginfo['oid']);
         
         $objExcel->getActiveSheet()->setCellValue('A4', 'FROM:昆明婴格经贸有限公司'); 
         $objExcel->getActiveSheet()->setCellValue('A4', 'FROM:昆明婴格经贸有限公司'); 
@@ -478,7 +493,7 @@ class PurchaseAction extends CommonAction {
         $objDrawing->setWorksheet($objActSheet);*/
 
         
-        $outputFileName = "婴格进货单.xls";   
+        $outputFileName = "婴格进货单-".$Sinfo['supplier']."-".$Pinfo['Warehouse']."-".$Ginfo['oid'].".xls";   
         
         $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel5');
         //        到文件   

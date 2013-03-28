@@ -54,7 +54,7 @@
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
-                                <td colspan="7"><?php echo ($page); ?></td>
+                                <td colspan="7" align="right" class="manu"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

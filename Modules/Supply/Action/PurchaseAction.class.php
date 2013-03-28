@@ -122,7 +122,7 @@ class PurchaseAction extends CommonAction {
         $Purchase = D('Purchase');
         import("ORG.Util.Page");// 导入分页类
 	$count = $Purchase->scope('normal,latest')->count();// 查询满足要求的总记录数
-	$Page = new Page($count,'3');// 实例化分页类 传入总记录数和每页显示的记录数
+	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
         $list = $Purchase->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
@@ -343,6 +343,8 @@ class PurchaseAction extends CommonAction {
         }
         $Supplier = D('Supplier');
         $Sinfo = $Supplier->where('flag=1 and sid="'.$sid.'"')->find();
+        $Purchase = D('Purchase');
+        $Pinfo = $Purchase->where('id='.$id)->field('Warehouse')->find();
         $PurchaseList = D('PurchaseList');
         $Plist = $PurchaseList->where('pid='.$id." and sid='".$sid."'")->select();
         Vendor("PHPExcel.PHPExcel");
@@ -366,8 +368,12 @@ class PurchaseAction extends CommonAction {
 
         $objActSheet = $objExcel->getActiveSheet();   
 
-        //设置当前活动sheet的名称   
-        $objActSheet->setTitle('婴格日新进货单');
+        //设置当前活动sheet的名称 
+        if($Pinfo['Warehouse']=='总仓'){
+            $objActSheet->setTitle('婴格总仓进货单');
+        }else{
+            $objActSheet->setTitle('婴格和谐店进货单');
+        }
         
         //合并单元格   
         //$objActSheet->mergeCells('A1:B1'); 
@@ -398,8 +404,11 @@ class PurchaseAction extends CommonAction {
         $objDrawing->getShadow()->setVisible(true);   
         $objDrawing->getShadow()->setDirection(36);   
         $objDrawing->setWorksheet($objActSheet); */
-        
-        $objExcel->getActiveSheet()->setCellValue('A1', '进 货 订 单（ 日 新 ）'); 
+        if($Pinfo['Warehouse']=='总仓'){
+            $objExcel->getActiveSheet()->setCellValue('A1', '进 货 订 单（ 总 仓 ）');
+        }else{
+            $objExcel->getActiveSheet()->setCellValue('A1', '进 货 订 单（ 和 谐 ）');
+        }
         $objStyleC1 = $objActSheet->getStyle('A1');
         $objFontC1 = $objStyleC1->getFont();   
         $objFontC1->setName('Courier New');   
@@ -420,11 +429,18 @@ class PurchaseAction extends CommonAction {
         $objExcel->getActiveSheet()->setCellValue('D4', '电话:');
         $objExcel->getActiveSheet()->setCellValue('E4', '0871-8082727');
         
-        $objExcel->getActiveSheet()->setCellValue('A5', '公司地址：云南省昆明市西山区日新中路滇池境界9栋2楼');
+        if($Pinfo['Warehouse']=='总仓'){
+            $objExcel->getActiveSheet()->setCellValue('A5', '公司地址：云南省昆明市西山区日新中路滇池境界9栋2楼');
+        }else{
+            $objExcel->getActiveSheet()->setCellValue('A5', '公司地址：云南省昆明市五华区小康大道中段和谐世纪二层');  
+        }
         $objExcel->getActiveSheet()->setCellValue('D5', '传真:');
         $objExcel->getActiveSheet()->setCellValue('E5', '0871-8082727-115');
-        
-        $objExcel->getActiveSheet()->setCellValue('A6', '烦请订购以下商品！请送往日新店');
+        if($Pinfo['Warehouse']=='总仓'){
+            $objExcel->getActiveSheet()->setCellValue('A6', '烦请订购以下商品！请送往日新店');
+        }else{
+            $objExcel->getActiveSheet()->setCellValue('A6', '烦请订购以下商品！请送往和谐店');
+        }
         $objStyleC6 = $objActSheet->getStyle('A6');
         $objFontC6 = $objStyleC6->getFont();   
         $objFontC6->setName('Courier New');   

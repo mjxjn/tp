@@ -44,10 +44,10 @@
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
                                     <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>-<?php echo ($vo["sid"]); ?>" /></td>
                                     <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
-                                    <td width="10%" align="center" title="<?php echo ($vo["supplier"]); ?>"><?php echo ($vo["supplier"]); ?></td>
-                                    <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
+                                    <td width="10%" align="left" title="<?php echo ($vo["supplier"]); ?>"><?php echo ($vo["supplier"]); ?></td>
+                                    <td width="20%" align="left"><?php echo ($vo["name"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["phone"]); ?></td>
-                                    <td width="10%" align="center" title="<?php echo ($vo["address"]); ?>"><?php echo ($vo["address"]); ?></td>
+                                    <td width="10%" align="left" title="<?php echo ($vo["address"]); ?>"><?php echo ($vo["address"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["tel"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["fax"]); ?></td>
                                     <td width="15%" align="center"><a href="#" onclick="javascript:editSupplier('<?php echo ($vo["id"]); ?>');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierGoods-sid-<?php echo ($vo["sid"]); ?>">商品</a>&nbsp;&nbsp;<a href="__APP__/Supplier-supplierDel-id-<?php echo ($vo["id"]); ?>-sid-<?php echo ($vo["sid"]); ?>" onclick="javascript:return p_del();">删除</a></td>

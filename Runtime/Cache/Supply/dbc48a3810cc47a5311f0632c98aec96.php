@@ -45,7 +45,7 @@
                                     <td width="20%" align="center"><?php echo ($vo["oid"]); ?></td>
                                     <td width="10%" align="center"><?php echo ($vo["goods_num"]); ?></td>
                                     <td width="20%" align="center"><?php echo ($vo["cre_time"]); ?></td>
-                                    <td width="20%" align="center"><?php echo ($vo["name"]); ?></td>
+                                    <td width="20%" align="left"><?php echo ($vo["name"]); ?></td>
                                     <td width="20%" align="center"><a href="__APP__/Goods-goodsList-id-<?php echo ($vo["id"]); ?>">查看</a>&nbsp;&nbsp;<?php if(($vo["flag"]) == "1"): ?><a href="__APP__/Purchase-creatPurchase-id-<?php echo ($vo["id"]); ?>">生成采购单</a><?php else: ?>已生成采购单<?php endif; ?>&nbsp;&nbsp;<a href="__APP__/Goods-goodsDel-id-<?php echo ($vo["id"]); ?>" onclick="javascript:return p_del();">删除</a></td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                            
@@ -69,6 +69,7 @@
 </html>
 <SCRIPT LANGUAGE='javascript'>
                                         $("#chk_all").click(function() {
+                                            alert($(this).attr("checked"));
                                             $("input[name='ids[]']").attr("checked", $(this).attr("checked"));
                                         });
                                         function p_del() {

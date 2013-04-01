@@ -52,12 +52,12 @@
                                 <tr <eq name="mod" value="1">bg</eq> <if condition="$vo.state eq 2">class="red"</if>>
                                 <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
                                 <td width="10%" align="center">{$vo.goods_code}</td>
-                                <td width="10%" align="center" title="{$vo.goods_name}">{$vo.goods_name}</td>
+                                <td width="10%" align="left" title="{$vo.goods_name}">{$vo.goods_name}</td>
                                 <td width="20%" align="center">{$vo.specification}</td>
                                 <td width="10%" align="center" title="{$vo.marque}">{$vo.marque}</td>
                                 <td width="15%" align="center">{$vo.display}</td>
                                 <td width="10%" align="center">{$vo.box_num}</td>
-                                <td width="10%" align="center">{$supplier}</td>
+                                <td width="10%" align="left">{$supplier}</td>
                                 <td width="5%" align="center">{$vo.goods_num}</td>
                                 <td width="5%" align="center">
                                     <if condition="$vo['get_goods_num'] eq $vo['goods_num']" >

@@ -69,7 +69,6 @@
 </html>
 <SCRIPT LANGUAGE='javascript'>
                                         $("#chk_all").click(function() {
-                                            alert($(this).attr("checked"));
                                             $("input[name='ids[]']").attr("checked", $(this).attr("checked"));
                                         });
                                         function p_del() {

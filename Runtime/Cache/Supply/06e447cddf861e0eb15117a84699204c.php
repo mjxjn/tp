@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>后台管理</title>
@@ -25,11 +25,11 @@
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="5">采购数量：{$count}&nbsp;&nbsp;实际到货商品数量：{$getcount}&nbsp;&nbsp;到货率：{$getbai}%</td>
-                                <td colspan="5" align="right"><a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}">全部商品列表</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-1">全部到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-2">未完全到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-3">超出到货数量商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-{$id}-sid-{$sid}-state-4">未采购商品</a></td>
+                                <td colspan="5">采购数量：<?php echo ($count); ?>&nbsp;&nbsp;实际到货商品数量：<?php echo ($getcount); ?>&nbsp;&nbsp;到货率：<?php echo ($getbai); ?>%</td>
+                                <td colspan="5" align="right"><a href="__APP__/Purchase-purchaseList-id-<?php echo ($id); ?>-sid-<?php echo ($sid); ?>">全部商品列表</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-<?php echo ($id); ?>-sid-<?php echo ($sid); ?>-state-1">全部到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-<?php echo ($id); ?>-sid-<?php echo ($sid); ?>-state-2">未完全到货商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-<?php echo ($id); ?>-sid-<?php echo ($sid); ?>-state-3">超出到货数量商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchaseList-id-<?php echo ($id); ?>-sid-<?php echo ($sid); ?>-state-4">未采购商品</a></td>
                             </tr>
                             <tr class="table_top">
-                                <td colspan="10">仓库：{$Warehouse}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供货商：{$supplier}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成日期：{$cre_time}</td>
+                                <td colspan="10">仓库：<?php echo ($Warehouse); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供货商：<?php echo ($supplier); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成日期：<?php echo ($cre_time); ?></td>
 <!--                                <td class="table_action" colspan="3">
                                     
                                 </td>-->
@@ -48,31 +48,27 @@
                                 <td width="5%" align="center">补货数量</td>
                                 <td width="5%" align="center">到货情况</td>
                             </tr>
-                            <volist name="list" id="vo" mod="2">
-                                <tr <eq name="mod" value="1">bg</eq> <if condition="$vo.state eq 2">class="red"</if>>
-                                <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-                                <td width="10%" align="center">{$vo.goods_code}</td>
-                                <td width="10%" align="left" title="{$vo.goods_name}">{$vo.goods_name}</td>
-                                <td width="20%" align="center">{$vo.specification}</td>
-                                <td width="10%" align="center" title="{$vo.marque}">{$vo.marque}</td>
-                                <td width="15%" align="center">{$vo.display}</td>
-                                <td width="10%" align="center">{$vo.box_num}</td>
-                                <td width="10%" align="left">{$supplier}</td>
-                                <td width="5%" align="center">{$vo.goods_num}</td>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?> <?php if($vo["state"] == 2): ?>class="red"<?php endif; ?>>
+                                <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
+                                <td width="10%" align="center"><?php echo ($vo["goods_code"]); ?></td>
+                                <td width="10%" align="left" title="<?php echo ($vo["goods_name"]); ?>"><?php echo ($vo["goods_name"]); ?></td>
+                                <td width="20%" align="center"><?php echo ($vo["specification"]); ?></td>
+                                <td width="10%" align="center" title="<?php echo ($vo["marque"]); ?>"><?php echo ($vo["marque"]); ?></td>
+                                <td width="15%" align="center"><?php echo ($vo["display"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["box_num"]); ?></td>
+                                <td width="10%" align="left"><?php echo ($supplier); ?></td>
+                                <td width="5%" align="center"><?php echo ($vo["goods_num"]); ?></td>
                                 <td width="5%" align="center">
-                                    <if condition="$vo['get_goods_num'] eq $vo['goods_num']" >
-                                        <span class="ok"></span>
-                                    <elseif condition="$vo['get_goods_num'] lt $vo['goods_num']" />
-                                        {$vo.get_goods_num}
-                                    <else />
-                                        <font color="red">{$vo.get_goods_num}</font>
-                                    </if>
+                                    <?php if($vo['get_goods_num'] == $vo['goods_num']): ?><span class="ok"></span>
+                                    <?php elseif($vo['get_goods_num'] < $vo['goods_num']): ?>
+                                        <?php echo ($vo["get_goods_num"]); ?>
+                                    <?php else: ?>
+                                        <font color="red"><?php echo ($vo["get_goods_num"]); ?></font><?php endif; ?>
                                 </td>
-                            </tr>
-                            </volist>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             <tr>
                                 <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /></td>
-                                <td colspan="8" align="right" class="manu">{$page}</td>
+                                <td colspan="8" align="right" class="manu"><?php echo ($page); ?></td>
                             </tr>
                         </tbody>
                     </table>

@@ -4,7 +4,7 @@ return array(
     'DB_HOST'                   =>  'localhost',
     'DB_NAME'                   =>  'reshop',
     'DB_USER'                   =>  'root',
-    'DB_PWD'                    =>  '',
+    'DB_PWD'                    =>  '236236',
     'DB_PORT'                   =>  '3306',
     'DB_PREFIX'                 =>  'rs_',
     

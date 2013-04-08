@@ -373,7 +373,7 @@ class PurchaseAction extends CommonAction {
         $Supplier = D('Supplier');
         $Sinfo = $Supplier->where('flag=1 and sid="'.$sid.'"')->find();
         $Purchase = D('Purchase');
-        $Pinfo = $Purchase->where('id='.$id)->field('Warehouse')->find();
+        $Pinfo = $Purchase->where('id='.$id)->field('gid,Warehouse')->find();
         $Purchase->where('id='.$id)->setInc('count',1);
         $goodsGroup = D('goodsGroup');
         $Ginfo = $goodsGroup->where('id='.$Pinfo['gid'])->field('oid')->find();
@@ -536,7 +536,7 @@ class PurchaseAction extends CommonAction {
             $this->error("参数错误！");
         }
         $Purchase = D('Purchase');
-        $Pinfo = $Purchase->where('id='.$id)->field('sid,Warehouse')->find();
+        $Pinfo = $Purchase->where('id='.$id)->field('gid,sid,Warehouse')->find();
         $sid=$Pinfo['sid'];
         $Supplier = D('Supplier');
         $Sinfo = $Supplier->where('flag=1 and sid="'.$sid.'"')->find();

@@ -7,7 +7,7 @@ class CommonAction extends Action {
         // 用户权限检查
         if (C('USER_AUTH_ON') && !in_array(MODULE_NAME, explode(',', C('NOT_AUTH_MODULE')))) {
             import('@.ORG.Util.RBAC');
-            if (!RBAC::AccessDecision()) {
+            if (!RBAC::AccessDecision('Supply')) {
                 //检查认证识别号
                 if (!$_SESSION [C('USER_AUTH_KEY')]) {
                     //跳转到认证网关

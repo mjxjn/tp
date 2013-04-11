@@ -49,7 +49,7 @@
                                     <td width="10%" align="center">{$vo.login_count}</td>
                                     <td width="20%" align="center">
                                         <if condition="$vo.id neq 1">
-                                        <a href="#" onclick="javascript:editAdmin('{$vo.id}');">编辑</a>&nbsp;&nbsp;<a href="__APP__/Purchase-creatPurchase-id-{$vo.id}">权限分配</a>&nbsp;&nbsp;<a href="__APP__/Admin-adminDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a>
+                                        <a href="#" onclick='javascript:editAdmin("{$vo.id}");'>编辑</a>&nbsp;&nbsp;<a href="__APP__/Admin-setPower-id-{$vo.id}">权限分配</a>&nbsp;&nbsp;<a href="__APP__/Admin-adminDel-id-{$vo.id}" onclick="javascript:return p_del();">删除</a>
                                         <else />
                                         超级管理员不可编辑
                                         </if>
@@ -67,7 +67,7 @@
                 <!-- } Content End -->
                 <!-- AddAdmin Start { -->
                 <div class="addsupplier">
-                    <div class="addsupplier_title">添加管理员<a href="#" onclick="javascript:closesupplier();" class="closesupplier"></a></div>
+                    <div class="admin_title"><a href="#" onclick="javascript:closesupplier();" class="closesupplier"></a></div>
                     <form action="__APP__/Admin-addAdmin" method="post" name="form1" id="form1">
                         <table border="0" cellpadding="0" cellspacing="0" class="supplytable">
                             <tr>
@@ -141,7 +141,7 @@
                                     function editAdmin(id) {
                                         $.ajax({
                                             type: "POST",
-                                            url: "__APP__/admin-AjaxAdminInfo",
+                                            url: "__APP__/Admin-AjaxAdminInfo",
                                             data: "id="+id,
                                             dataType: 'json',
                                             success: function(msg) {
@@ -161,7 +161,7 @@
 var _move=false;//移动标记
 var _x,_y;//鼠标离控件左上角的相对位置
 $(document).ready(function(){
-    $(".addsupplier_title").click(function(){
+    $(".admin_title").click(function(){
         //alert("click");//点击（松开后触发）
         }).mousedown(function(e){
         _move=true;

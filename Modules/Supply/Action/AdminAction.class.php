@@ -88,6 +88,14 @@ class AdminAction extends CommonAction {
             $this->error("删除管理员失败！");
         }
     }
+    
+    public function setPower(){
+        $id = $this->_get('id');
+        if(empty($id)||$id==1){
+            $this->error("参数错误！");
+        }
+        $this->display();
+    }
 }
 
 ?>

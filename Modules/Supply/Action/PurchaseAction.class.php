@@ -124,7 +124,7 @@ class PurchaseAction extends CommonAction {
 	$count = $Purchase->scope('normal,latest')->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
-        $list = $Purchase->scope('normal,latest')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $Purchase->scope('normal,latest')->where('goods_num>0')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
@@ -695,6 +695,45 @@ class PurchaseAction extends CommonAction {
         header("Pragma: no-cache");   
         $objWriter->save('php://output'); 
         
+    }
+    
+    public function AjaxGetPurchaseInfo(){
+        $id = $this->_post('id');
+        if(empty($id)){
+            $return['state']=1;
+        }
+        $PurchaseList = D('PurchaseList');
+        $info = $PurchaseList->where('id='.$id)->field('id,goods_num')->find();
+        if(!empty($info)){
+            $return['state']=0;
+            $return['info']=$info;
+        }else{
+            $return['state']=1;
+        }
+        echo json_encode($return);
+    }
+    
+    public function editGoodsNum(){
+        $id = $this->_post('id');
+        $goods_num = $this->_post('goods_num');
+        if(empty($id)){
+            $this->error("参数错误！");
+        }
+        $PurchaseList = D('PurchaseList');
+        $info = $PurchaseList->where('id='.$id)->field('goods_num,source_goods_num')->find();
+        $data['id'] = $id;
+        $data['up_time'] =  Mdate();
+        if($info['source_goods_num']==='0'){
+            $data['source_goods_num'] = $info['goods_num'];
+            $data['goods_num'] = $goods_num;
+        }else{
+            $data['goods_num'] = $goods_num;
+        }
+        if($PurchaseList->save($data)){
+            $this->success("修改补货数量成功");
+        }else{
+            $this->error("修改补货数量失败，请重新修改！");
+        }
     }
 
 }

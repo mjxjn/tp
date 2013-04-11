@@ -146,3 +146,5 @@ BORDER-LEFT: #999 1px solid;
 COLOR: #666;
 BORDER-BOTTOM: #999 1px solid;
 }
+/*添加管理员*/
+.admin_title{background: url('../images/admin_title.jpg') no-repeat;width: 643px; height: 35px;}

@@ -119,12 +119,23 @@ class PurchaseAction extends CommonAction {
     }
     
     public function purchase(){
+        $type = $this->_get('type');
+        switch ($type){
+            case 1:
+                $where=" and p.Warehouse = '总仓'";
+                $map['Warehouse']='总仓';
+                break;
+            case 2:
+                $where=" and p.Warehouse = '和谐店'";
+                $map['Warehouse']='和谐店';
+                break;
+        }
         $Purchase = D('Purchase');
         import("ORG.Util.Page");// 导入分页类
-	$count = $Purchase->scope('normal,latest')->count();// 查询满足要求的总记录数
+	$count = $Purchase->scope('normal,latest')->where($map)->count();// 查询满足要求的总记录数
 	$Page = new Page($count,'50');// 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();// 分页显示输出
-        $list = $Purchase->scope('normal,latest')->where('goods_num>0')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $Purchase->alias('p')->join("rs_goods_group g on p.gid = g.id")->where('p.flag=1 and p.goods_num>0 '.$where)->limit($Page->firstRow.','.$Page->listRows)->field("p.*,g.oid")->order('p.cre_time desc')->select();
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();

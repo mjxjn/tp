@@ -31,7 +31,7 @@
                                         <option value=""></option>
                                     </select>
                                     <input type="submit" name="button" value='查看' class="alldel"  />
-                        
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase">查看所有采购单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase-type-1">仅查看总仓采购单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase-type-2">仅查看和谐仓采购单</a>
                        </form>
                     </div>
                     <form action="__APP__/Purchase-allAct" method="post" name="form1" id="form1">
@@ -45,7 +45,7 @@
                         <tbody>
                             <tr class="bg table_menu">
                                 <td width="5%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
-                                <td width="10%" align="center">供货商编号</td>
+                                <td width="10%" align="center">单号</td>
                                 <td width="10%" align="center">供货仓库</td>
                                 <td width="20%" align="center">供货商名称</td>
                                 <td width="5%" align="center">供货商品数量</td>
@@ -56,7 +56,7 @@
                             </tr>
                             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr <?php if(($mod) == "1"): ?>bg<?php endif; ?>>
                                 <td width="5%"><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
-                                <td width="10%" align="center"><?php echo ($vo["sid"]); ?></td>
+                                <td width="10%" align="center"><?php echo ($vo["oid"]); ?></td>
                                 <td width="10%" align="left"><?php echo ($vo["Warehouse"]); ?></td>
                                 <td width="20%" align="left" title="<?php echo ($vo["supplier"]); ?>"><?php echo ($vo["supplier"]); ?></td>
                                 <td width="5%" align="center"><?php echo ($vo["goods_num"]); ?></td>

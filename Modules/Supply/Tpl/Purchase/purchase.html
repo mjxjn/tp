@@ -31,7 +31,7 @@
                                         <option value=""></option>
                                     </select>
                                     <input type="submit" name="button" value='查看' class="alldel"  />
-                        
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase">查看所有采购单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase-type-1">仅查看总仓采购单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="__APP__/Purchase-purchase-type-2">仅查看和谐仓采购单</a>
                        </form>
                     </div>
                     <form action="__APP__/Purchase-allAct" method="post" name="form1" id="form1">
@@ -45,7 +45,7 @@
                         <tbody>
                             <tr class="bg table_menu">
                                 <td width="5%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
-                                <td width="10%" align="center">供货商编号</td>
+                                <td width="10%" align="center">单号</td>
                                 <td width="10%" align="center">供货仓库</td>
                                 <td width="20%" align="center">供货商名称</td>
                                 <td width="5%" align="center">供货商品数量</td>
@@ -57,7 +57,7 @@
                             <volist name="list" id="vo" mod="2">
                                 <tr <eq name="mod" value="1">bg</eq>>
                                 <td width="5%"><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
-                                <td width="10%" align="center">{$vo.sid}</td>
+                                <td width="10%" align="center">{$vo.oid}</td>
                                 <td width="10%" align="left">{$vo.Warehouse}</td>
                                 <td width="20%" align="left" title="{$vo.supplier}">{$vo.supplier}</td>
                                 <td width="5%" align="center">{$vo.goods_num}</td>

@@ -53,7 +53,9 @@ class LoginAction extends Action {
     public function unlogin() {
         session(null);
         if (!session(C('USER_AUTH_KEY'))) {
-            $this->success("用户成功退出", __APP__ . "/Login-index");
+            session_destroy();
+            $this->assign('jumpUrl',__APP__ . "/Login-index");
+            $this->success("用户成功退出");
         }
     }
 

@@ -22,42 +22,32 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;管理团队设置</div>
                     <!-- } 路径导航 End -->
-                    
+                    <form action="__APP__/Admin-AdminPower" name="form1" method="post">
                     <div class="system_note f14">
                         管理员权限设置
                     </div>
                     <div class="download_csv">
-                        <h2>第一步&nbsp;下载数据模板（csv文件）：</h2>
+                        <h2 class="f14">商品智能补货系统</h2>
                         <div class="">
-                            <div class="left w350 info_bg">
-                                <span class="down_ico"></span><a href="__PUBLIC__/Csv/orderList.csv">下载数据模板</a>
-                            </div>
-                            <div class="left">
-                                数据模板格式为csv文件，使用Excel表格打开并填写商品信息
-                            </div>
+                            <volist name='list' id='vo'>
+                                <label style="line-height: 52px; padding: 0 20px;"><input type='checkbox' name="pids[]" value="{$vo.id}" <eq name='vo.checked' value='1'>checked</eq> style="vertical-align: middle;" />&nbsp;&nbsp;{$vo.name}</label>
+                            </volist>
                         </div>
                         <div class="clear"></div>
-                        <a href="__PUBLIC__/Csv/orderList.csv" class="download_btn"></a>
                     </div>
                     <div class="clear"></div>
                     <div class="upload_csv">
-                        <h2>第二步&nbsp;上传数据模板（csv文件）：</h2>
-                        <form action="__APP__/Goods-csvUpload" name="upload" method="post" enctype="multipart/form-data">
+                        <h2 class="f14">订单登记管理系统</h2>
+                        
                         <div class="">
-<!--                            <div class="left w350 info_bg">
-                                <span class="up_ico"></span>上传数据模板
-                            </div>-->
-                            <div class="left w350">
-                                <input type="file" name="upfile" />
-                            </div>
-                            <div class="left">
-                                上传填写完毕的商品信息数据模板，完成数据批量导入
-                            </div>
+                            
                         </div>
                         <div class="clear"></div>
-                        <input type="submit" class="upload_btn" value="开始导入"/>
-                        </form>
+                        <input type="submit" class="upload_btn" value="确认权限"/>
+                        <input type="button" onclick="location.href='__APP__/Admin-adminList'" class="upload_btn" value="返回列表"/>
+                        <input type="hidden" name="adminid" value="{$adminid}" />
                     </div>
+                    </form>
                 </div>
                 <!-- } Content End -->
                 <!-- Footer Start { -->

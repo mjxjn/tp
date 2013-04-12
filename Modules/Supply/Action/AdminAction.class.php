@@ -94,7 +94,36 @@ class AdminAction extends CommonAction {
         if(empty($id)||$id==1){
             $this->error("参数错误！");
         }
+        $role = M('role');
+        $list = $role->where('status = 1')->select();
+        $role_user = M('role_user');
+        $info = $role_user->where('user_id='.$id)->select();
+        foreach ($list as $k => $val) {
+            foreach ($info as $key => $value){
+                if($val['id']==$value['role_id']){
+                    $list[$k]['checked']=1;
+                }
+            }
+        }
+        $this->assign('list',$list);
+        $this->assign('adminid',$id);
         $this->display();
+    }
+    
+    public function AdminPower(){
+        $adminid = $this->_post('adminid');
+        if(empty($adminid)){
+            $this->error("参数错误！");
+        }
+        $pids = $this->_post('pids');
+        $role_user = M('role_user');
+        $role_user->where('user_id='.$adminid)->delete();
+        foreach ($pids as $role_id){
+            $data['role_id']=$role_id;
+            $data['user_id']=$adminid;
+            $role_user->add($data);
+        }
+        $this->success("权限设置成功！");
     }
 }
 

@@ -21,14 +21,22 @@
                     <!-- 路径导航 Start ｛ -->
                     <div class="blkBreadcrumbNav txt_636363"><span class="blkBreadcrumbNav_ico"></span><a href="__APP__">管理中心</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;<a href="__APP__/Goods-orderList">商品智能补货系统</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;供货商管理</div>
                     <!-- } 路径导航 End -->
-                    <form action="__APP__/SupplierGoods-allDel" method="post" name="form2" id="form2">
                     <table cellpadding="0" cellspacing="0" class="tablebox" width="100%" >
                         <thead>
                             <tr class="table_top">
-                                <td colspan="7">供货商:{$info['supplier']}</td>
+                                <td colspan="2">
+                                    供货商:{$info['supplier']}
+                                </td>
+                                <td colspan="5">
+                                    <form action="__APP__/SupplierGoods-search" name="form1" id="form1" method="post" >
+                                        商品名称/商品条码：&nbsp;&nbsp;<input type="text" id="supplierGoods" name="keyword" value="商品名称/商品条码" onclick="clearDefaultText(this,'商品名称/商品条码')" style="height:24px; line-height: 24px; width: 250px"/>
+                                        <input type="submit" name="button" value='搜索' class="alldel"  /><input type='hidden' name="sid" value="{$info['sid']}" /><input type="hidden" name="backurl" value='{$backurl}' />
+                                    </form>
+                                </td>
                                 <td class="table_action" colspan="2"><span class="table_action_ico"></span><a href="__APP__/Supplier-upSupplier-sid-{$info['sid']}">批量添加商品</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="table_action_ico"></span><a href="#" onclick="javascript:addsupplier();">添加供货商品</a></td>
                             </tr>
                         </thead>
+                        <form action="__APP__/SupplierGoods-allDel" method="post" name="form2" id="form2">
                         <tbody>
                             <tr class="bg table_menu">
                                 <td width="5%"><input type="checkbox" name="checkall" id="chk_all"  value="" /></td>
@@ -53,12 +61,12 @@
                                 </tr>
                             </volist>
                             <tr>
-                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /><input type="hidden" name="sid" value="{$sid}" /></td>
+                                <td colspan="2"><input type="button" name="delete" value='删除' onclick="all_del()" class="alldel"  /><input type="button" name="back" value="返回" onclick="history.go(-1)" class="alldel" /><input type="hidden" name="sid" value="{$sid}" /></td>
                                 <td colspan="6" align="right" class="manu">{$page}</td>
                             </tr>
                         </tbody>
+                        </form>
                     </table>
-                    </form>
                 </div>
                 <!-- } Content End -->
                 <!-- AddSupplier Start { -->
@@ -125,7 +133,23 @@
     </body>
 </html>
 <SCRIPT LANGUAGE=javascript>
-
+function clearDefaultText (el,message)
+    {
+    var obj = el;
+    if(typeof(el) == "string")
+    obj = document.getElementById(id);
+    if(obj.value == message)
+    {
+    obj.value = "";
+    }
+    obj.onblur = function()
+    {
+    if(obj.value == "")
+    {
+       obj.value = message;
+    }
+    }
+    }
                                     function p_del() {
                                         var msg = "您真的确定要删除吗？\n\n请确认！";
                                         if (confirm(msg) == true) {
